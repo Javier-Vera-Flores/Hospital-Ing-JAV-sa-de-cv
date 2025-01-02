@@ -89,12 +89,45 @@ nav ul {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.about-us,
 .additional-info {
   background-color: #e8f5e9; /* Soft green section background */
   margin: 20px 0;
   padding: 20px;
   border-radius: 10px;
+  /* Evita que cualquier contenido se salga */
+  overflow: hidden; 
+}
+
+.why-us-title {
+  text-align: end; /* Centrar el título */
+  margin-bottom: 20px; /* Separación del contenido principal */
+  font-size: 1.8em; /* Tamaño del título */
+  color: #333;
+}
+
+.content {
+  display: flex; /* Mantener el diseño en línea */
+  justify-content: space-between;
+  gap: 20px; /* Espaciado entre video y descripción */
+}
+
+.video {
+  flex: 0 0 40%; /* No crece, no se reduce, ocupa el 40% */
+  object-fit: cover; /* Ajusta la imagen si es necesario */
+  max-width: 100%; /* Evita que exceda el contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.description-why-us {
+  flex: 0 0 60%; /* No crece, no se reduce, ocupa el 60% */
+  max-width: 100%; /* Asegura que los párrafos no excedan el tamaño del contenedor */
+}
+.about-us {
+  background-color: #e8f5e9; /* Soft green section background */
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 10px;
+
 }
 
 .about-us h2,
@@ -106,7 +139,27 @@ nav ul {
 .why-us p {
   line-height: 1.6;
 }
+.about-us-container{
+    display: flex;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    gap: 0; /* Sin espacio entre los elementos */
+    padding: 0; /* Sin relleno dentro del contenedor */
+    margin-right: 0; /* Sin márgenes en el contenedor */
+}
+.about-us-container section {
+    flex: 0 0 50%; /* No crece, no se reduce, ocupa el 60% */
+    margin: 1% ;
+}
 
+.about-us-container img {
+    flex: 0 0 40%; /* No crece, no se reduce, ocupa el 40% */
+    object-fit: cover; /* Ajusta la imagen si es necesario */
+    max-width: 100%; 
+    height: auto; /*  proporción de la imagen */
+    margin: 0; /* Sin márgenes */
+    padding: 0; /* Sin relleno */
+}
 /* Footer Styles */
 footer {
   background-color: #004d40; /* Dark green */
@@ -166,11 +219,15 @@ footer {
 }
 /* Estilos específicos para el carrusel */
 #carouselExampleDark {
-  max-height: 30vh; /* Limita la altura máxima al 60% de la altura de la ventana */
+  max-height: 50vh; /* Limita la altura máxima al 60% de la altura de la ventana */
   overflow: hidden; /* Evita que el contenido se desborde */
 }
 
 #carouselExampleDark .carousel-inner img {
   object-fit: cover; /* Ajusta las imágenes dentro de su contenedor */
-  height: 30vh; /* Asegura que las imágenes no excedan la altura del carrusel */
+  height: 50vh; /* Asegura que las imágenes no excedan la altura del carrusel */
+}
+/* Se justifica el contendio de texto de todos los parrafos de la paginita */
+main p{
+  text-align: justify;
 }
