@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
             alert('Has cerrado sesión exitosamente.');
-            window.location.href = 'inicio.html'; // Redirigir al login
+            window.location.href = 'contactanos.html'; // Redirigir al login
         });
     } else {
         userGreeting.textContent = 'Bienvenido, invitado!';
