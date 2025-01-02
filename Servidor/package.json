@@ -9,12 +9,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "nodemailer": "^6.9.16"
-  }
+    "fs": "^0.0.1-security",
+    "http": "^0.0.1-security",
+    "nodemailer": "^6.9.16",
+    "path": "^0.12.7",
+    "soap": "^1.1.7"
+  },
+  "devDependencies": {},
+  "description": ""
 }
