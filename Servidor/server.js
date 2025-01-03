@@ -41,13 +41,22 @@ app.use(express.static(path.join(__dirname, "../Cliente")));
  *****************************/
 //#######################################################################################
 /******************************
+ * INICIO - Citas Medicas
+ *****************************/
+
+
+/******************************
+ * FIN - Citas Medicas
+ *****************************/
+//#######################################################################################
+/******************************
  * INICIO - Login
  *****************************/
 // Rutas REST para login y registro
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
 
-  fs.readFile(path.join(__dirname, "users.json"), "utf8", (err, data) => {
+  fs.readFile(path.join(__dirname, "./jsonComunicacion/users.json"), "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({
         success: false,
@@ -71,7 +80,7 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
 
-  fs.readFile(path.join(__dirname, "users.json"), "utf8", (err, data) => {
+  fs.readFile(path.join(__dirname, "./jsonComunicacion/users.json"), "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({
         success: false,
@@ -89,7 +98,7 @@ app.post("/register", (req, res) => {
     users.push({ username, password });
 
     fs.writeFile(
-      path.join(__dirname, "users.json"),
+      path.join(__dirname, "./jsonComunicacion/users.json"),
       JSON.stringify(users, null, 2),
       (err) => {
         if (err) {
@@ -112,7 +121,7 @@ app.post("/register", (req, res) => {
  *****************************/
 // Ruta para servir el archivo de doctores
 app.get("/doctores", (req, res) => {
-  const filePath = path.join(__dirname, "doctores.json");
+  const filePath = path.join(__dirname, "./jsonComunicacion/doctores.json");
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return res
