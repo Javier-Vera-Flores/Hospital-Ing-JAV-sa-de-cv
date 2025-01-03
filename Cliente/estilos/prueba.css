@@ -1,0 +1,49 @@
+/* Estilos para el formulario */
+.form-busqueda {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.form-busqueda label {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.form-busqueda input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-busqueda button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-busqueda button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el listado de citas */
+.listado-citas {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.listado-citas li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}

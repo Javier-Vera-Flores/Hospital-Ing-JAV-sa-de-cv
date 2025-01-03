@@ -14,7 +14,7 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: ["http://127.0.0.1:3000", "http://127.0.0.1:51346"], // Cambia esto al origen donde está tu cliente
+    origin: ["http://127.0.0.1:3000", "http://127.0.0.1:50767"], // Cambia esto al origen donde está tu cliente
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
   })

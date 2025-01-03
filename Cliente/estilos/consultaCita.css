@@ -1,4 +1,7 @@
 /* General Styles */
+/* *{
+  border: 1px solid red;
+} */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -8,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la ventana */
+  
 }
 
 main {
@@ -164,3 +168,75 @@ footer {
     text-align: center;
   }
 }
+/* Estilos del listado de busqueda */
+.listado-busqueda{
+  /* background-color: brown; */
+  width: 100%;
+  height: 80px;
+}
+
+/* Estilos para el formulario */
+.parrafo-form{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  color: #2e7d32;
+}
+.container-cita{
+  width: 100%;
+  padding: 20px; /* Agrega algo de espacio alrededor si es necesario */
+}
+.form-busqueda {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    /* max-width: 400px; */
+    max-width: 100%;
+    margin: 0 auto;
+    gap: 10px;
+    align-items: center;
+    border: double green;
+
+}
+
+.form-busqueda label {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.form-busqueda input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-busqueda button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-busqueda button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para el listado de citas */
+.listado-citas {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.listado-citas li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
