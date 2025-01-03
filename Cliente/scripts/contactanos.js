@@ -1,3 +1,4 @@
+localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     

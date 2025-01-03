@@ -1,3 +1,4 @@
+localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener("DOMContentLoaded", () => {
   const userGreeting = document.getElementById("userGreeting");

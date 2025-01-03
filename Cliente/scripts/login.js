@@ -1,4 +1,5 @@
 const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
+
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", async (event) => {
@@ -48,7 +49,16 @@ async function iniciarSesion(username, password) {
       messageElement.textContent = "Inicio de sesión exitoso";
       messageElement.style.color = "green";
       localStorage.setItem("loggedInUser", username);
-      window.location.href = "../index.html";
+      //window.location.href = "../index.html";
+      //Si existe una pagina anterior o diferente de inicio, redirigimos a ella,
+      //de otra forma redirigir a index
+      const paginaPrevia = localStorage.getItem('previousPage');
+      if(paginaPrevia){
+        window.location.href = paginaPrevia;
+      }else{
+        window.location.href = "../index.html";
+      }
+
     } else {
       messageElement.textContent = "Usuario o contraseña incorrectos";
       messageElement.style.color = "red";

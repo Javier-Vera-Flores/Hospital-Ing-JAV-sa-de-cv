@@ -1,6 +1,7 @@
+localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 // Simulación del estado del usuario
-const usuarioLogeado = false; // Cambia a true si el usuario está logeado
-
+//const usuarioLogeado = false; // Cambia a true si el usuario está logeado
+const usuarioLogeado = localStorage.getItem('loggedInUser');
 // Selecciona el div donde se gestionará el contenido dinámico
 // const containerCita = document.querySelector('.container-cita');
 const listaBusqueda = document.querySelector('.listado-busqueda');
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutButton');
     const username = localStorage.getItem('loggedInUser');
 
+
     // Configurar el saludo y el texto del botón de manera dinámica
     if (username) {
         userGreeting.textContent = `Bienvenido, ${username}!`;
@@ -130,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
             alert('Has cerrado sesión exitosamente.');
-            window.location.href = 'doctores.html'; // Redirigir al login
+            window.location.href = 'consultaCita.html'; // Redirigir al login
         });
     } else {
         userGreeting.textContent = 'Bienvenido, invitado!';
