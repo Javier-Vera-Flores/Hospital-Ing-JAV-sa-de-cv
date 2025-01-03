@@ -1,10 +1,12 @@
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
+const username = localStorage.getItem('loggedInUser');
 // Simulación del estado del usuario
 //const usuarioLogeado = false; // Cambia a true si el usuario está logeado
 const usuarioLogeado = localStorage.getItem('loggedInUser');
 // Selecciona el div donde se gestionará el contenido dinámico
 // const containerCita = document.querySelector('.container-cita');
 const listaBusqueda = document.querySelector('.listado-busqueda');
+const formBusqueda = document.querySelector('.container-cita');
 
 // Función para mostrar el formulario de búsqueda por ID
 function mostrarBusquedaPorID() {
@@ -36,6 +38,8 @@ function mostrarBusquedaPorID() {
 
 // Función para mostrar el listado de citas del usuario logeado
 function mostrarListadoCitas() {
+    //quitaremos el contenido de 
+    formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${username}, estas son tus citas</p>`;
     // Ejemplo de citas obtenidas (pueden venir de un backend)
     const citas = [
         { id: 1, fecha: '2025-01-05', hora: '10:00 AM', doctor: 'Dr. Pérez' },
@@ -51,6 +55,7 @@ function mostrarListadoCitas() {
         ul.appendChild(li);
     });
     listaBusqueda.appendChild(ul);
+
 }
 // Función para mostrar el spinner de carga
 function mostrarSpinner() {
@@ -122,7 +127,7 @@ if (usuarioLogeado) {
 document.addEventListener('DOMContentLoaded', () => {
     const userGreeting = document.getElementById('userGreeting');
     const logoutButton = document.getElementById('logoutButton');
-    const username = localStorage.getItem('loggedInUser');
+    //const username = localStorage.getItem('loggedInUser');
 
 
     // Configurar el saludo y el texto del botón de manera dinámica
