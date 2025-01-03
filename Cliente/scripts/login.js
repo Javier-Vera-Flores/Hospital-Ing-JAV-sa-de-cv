@@ -1,53 +1,53 @@
-//const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
 const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
 document.addEventListener("DOMContentLoaded", () => {
-  // Asignar el evento 'submit' al formulario de login
   const loginForm = document.getElementById("loginForm");
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    // Obtener valores del formulario
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Llamar a la función de inicio de sesión
+    if (!username || !password) {
+      alert("Por favor, ingresa usuario y contraseña.");
+      return;
+    }
+
     await iniciarSesion(username, password);
   });
 
-  // Asignar el evento 'submit' al formulario de registro
   const registerForm = document.getElementById("registerForm");
   registerForm.addEventListener("submit", async (event) => {
     event.preventDefault();
-
-    // Obtener valores del formulario
     const newUsername = document.getElementById("newUsername").value;
     const newPassword = document.getElementById("newPassword").value;
 
-    // Llamar a la función de registro
+    if (!newUsername || !newPassword) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
     await agregarUsuario(newUsername, newPassword);
   });
 });
 
-// Función de inicio de sesión
 async function iniciarSesion(username, password) {
   try {
-    //    const response = await fetch("/login", {
     const response = await fetch(`${SERVER_URL}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
 
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+
     const result = await response.json();
     const messageElement = document.getElementById("loginMessage");
+    messageElement.textContent = ""; // Limpiar mensaje anterior
     if (result.success) {
       messageElement.textContent = "Inicio de sesión exitoso";
       messageElement.style.color = "green";
-
-      // Guardar el nombre de usuario en localStorage
       localStorage.setItem("loggedInUser", username);
-
-      //window.location.href = 'inicio.html';
       window.location.href = "../index.html";
     } else {
       messageElement.textContent = "Usuario o contraseña incorrectos";
@@ -59,24 +59,26 @@ async function iniciarSesion(username, password) {
   }
 }
 
-// Función de registro
 async function agregarUsuario(newUsername, newPassword) {
   try {
-    //const response = await fetch("/register", {
     const response = await fetch(`${SERVER_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: newUsername, password: newPassword }),
     });
 
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+
     const result = await response.json();
     const messageElement = document.getElementById("registerMessage");
+    messageElement.textContent = ""; // Limpiar mensaje anterior
     if (result.success) {
       messageElement.textContent = "Usuario registrado exitosamente";
       messageElement.style.color = "green";
     } else {
-      messageElement.textContent =
-        "Error al registrar usuario: " + result.message;
+      messageElement.textContent = `Error al registrar usuario: ${result.message}`;
       messageElement.style.color = "red";
     }
   } catch (error) {
@@ -84,3 +86,15 @@ async function agregarUsuario(newUsername, newPassword) {
     alert("Hubo un problema al conectar con el servidor.");
   }
 }
+
+const container = document.getElementById("container");
+const registerBtn = document.getElementById("register");
+const loginBtn = document.getElementById("login");
+
+registerBtn.addEventListener("click", () => {
+  container.classList.add("active");
+});
+
+loginBtn.addEventListener("click", () => {
+  container.classList.remove("active");
+});
