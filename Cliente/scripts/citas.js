@@ -14,6 +14,7 @@ function mostrarBusquedaPorID() {
 
     // Manejar el evento del formulario
     const formulario = document.getElementById('buscar-cita');
+
     formulario.addEventListener('submit', async (e) => {
         e.preventDefault();
         const idCita = document.getElementById('idCita').value;
@@ -27,6 +28,7 @@ function mostrarBusquedaPorID() {
 
         // Reemplazar el spinner con la vista final
         mostrarResultadoBusqueda(idCita);
+        //mostrarListadoCitas();
  
     });
 }
@@ -104,7 +106,7 @@ function mostrarResultadoBusqueda(idCita) {
         listaBusqueda.innerHTML = `<p>No se encontró ninguna cita con el ID proporcionado.</p>`;
     }
 }
-// Función para simular un retraso (puedes reemplazarla con una llamada a fetch)
+// Función para simular un retraso 
 function simularRetraso(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -114,3 +116,29 @@ if (usuarioLogeado) {
 } else {
     mostrarBusquedaPorID();
 }
+//logica de logeo
+//Configuración dinámica del boton de iniciar/cerrar sesion
+document.addEventListener('DOMContentLoaded', () => {
+    const userGreeting = document.getElementById('userGreeting');
+    const logoutButton = document.getElementById('logoutButton');
+    const username = localStorage.getItem('loggedInUser');
+
+    // Configurar el saludo y el texto del botón de manera dinámica
+    if (username) {
+        userGreeting.textContent = `Bienvenido, ${username}!`;
+        logoutButton.textContent = 'Cerrar Sesión';
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
+            alert('Has cerrado sesión exitosamente.');
+            window.location.href = 'doctores.html'; // Redirigir al login
+        });
+    } else {
+        userGreeting.textContent = 'Bienvenido, invitado!';
+        logoutButton.textContent = 'Iniciar Sesión';
+        logoutButton.addEventListener('click', () => {
+            window.location.href = 'login.html'; // Redirigir al login
+        });
+    }
+});
+
+
