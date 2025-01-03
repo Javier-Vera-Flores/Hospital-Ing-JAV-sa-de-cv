@@ -1,14 +1,24 @@
+/******************************
+ * INICIO - Variables
+ *****************************/
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const soap = require("soap"); //Creo que se va a usar
 const http = require("http");
 require("dotenv").config(); // Manejar variables de entorno
-
 const app = express();
-
 const cors = require("cors"); // Importar el paquete
-
+const HOST = process.env.HOST || "127.0.0.1";
+const PORT = process.env.PORT || 3000;
+const server = http.createServer(app);
+/******************************
+ * FIN - Variables
+ *****************************/
+//#######################################################################################
+/******************************
+ * INICIO - Configuración
+ *****************************/
 // Configurar CORS
 app.use(
   cors({
@@ -20,17 +30,18 @@ app.use(
   })
 );
 
-// Configuración de host y puerto
-const HOST = process.env.HOST || "127.0.0.1";
-const PORT = process.env.PORT || 3000;
-
-// Middleware para interpretar JSON en los requests
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
-
-// Servir archivos estáticos de la carpeta "public"
+// Servir archivos estáticos de la carpeta "Cliente"
 app.use(express.static(path.join(__dirname, "../Cliente")));
-
+/******************************
+ * FIN - Configuración
+ *****************************/
+//#######################################################################################
+/******************************
+ * INICIO - Login
+ *****************************/
 // Rutas REST para login y registro
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
@@ -91,7 +102,13 @@ app.post("/register", (req, res) => {
     );
   });
 });
-
+/******************************
+ * FIN - Login
+ *****************************/
+//#######################################################################################
+/******************************
+ * INICIO - Nuestro equipo médico
+ *****************************/
 // Ruta para servir el archivo de doctores
 app.get("/doctores", (req, res) => {
   const filePath = path.join(__dirname, "doctores.json");
@@ -104,26 +121,24 @@ app.get("/doctores", (req, res) => {
     res.json(JSON.parse(data));
   });
 });
-
+/******************************
+ * FIN - Nuestro equipo médico
+ *****************************/
+//#######################################################################################
+/******************************
+ * INICIO - Servidor
+ *****************************/
 // Ruta para inicializar en localhost 3000 en inicio.html
 app.get("/", (req, res) => {
   //res.sendFile(path.join(__dirname, '../Cliente', 'inicio.html'));
   res.sendFile(path.join(__dirname, "../Cliente", "index.html"));
 });
 
-/******************************
- * INICIO - Contactanos
- *****************************/
-// No se puede en backend
-
-/******************************
- * FIN - Contactanos
- *****************************/
-
-// Crear el servidor HTTP para integrar ambos servicios
-const server = http.createServer(app);
-
-// Iniciar el servidor
 server.listen(PORT, HOST, () => {
   console.log(`Servidor REST ejecutándose en http://${HOST}:${PORT}`);
 });
+/******************************
+ * FIN - Servidor
+ *****************************/
+//#######################################################################################
+
