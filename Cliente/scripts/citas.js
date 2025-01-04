@@ -41,6 +41,9 @@ function mostrarListadoCitas() {
     //quitaremos el contenido de 
     formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${username}, estas son tus citas</p>`;
     // Ejemplo de citas obtenidas (pueden venir de un backend)
+
+
+
     const citas = [
         { id: 1, fecha: '2025-01-05', hora: '10:00 AM', doctor: 'Dr. Pérez' },
         { id: 2, fecha: '2025-01-10', hora: '02:00 PM', doctor: 'Dra. López' }
@@ -147,5 +150,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+async function loadCitas(contenedorSeleccionado){
+    const contenedor = document.querySelector(contenedorSeleccionado);
+    if(!contenedor){
+        console.error(`Contenedor no encontrado: ${containerSelector}`);
+        return;
+    }
 
+    try{
+        const response = await fetch(`${SERVER_URL}//citasMedicas`);
+        if(!response.ok){
+            throw new Error("Error al obtener las citas");
+        }
+        const citas = await response.json();
+        contenedor.innerHTML = '';
+        citas.forEach(cita =>{
+            const citaDiv = document.createElement("div");
+            citaDiv.classList.add("cita"); //añadimos la clase cita al div
+            
+        });
+    }catch(error){
+        console.error(error);
+        contenedor.innerHTML = `<p>No se pudo cargar correctamente las citas</p>`;
+    }
+
+
+}
 

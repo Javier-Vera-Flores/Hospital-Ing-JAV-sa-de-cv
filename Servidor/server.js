@@ -9,6 +9,7 @@ const http = require("http");
 require("dotenv").config(); // Manejar variables de entorno
 const app = express();
 const cors = require("cors"); // Importar el paquete
+const { error } = require("console");
 const HOST = process.env.HOST || "127.0.0.1";
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
@@ -44,7 +45,16 @@ app.use(express.static(path.join(__dirname, "../Cliente")));
  * INICIO - Citas Medicas
  *****************************/
 
-
+app.get("/citasMedicas", (req, res)=> {
+  const filePath = path.join(__dirname, "./jsonComunicacion/citas.json");
+  fs.readFile(filePath, "utf8",(err, data)=>{
+    if(err){
+      return res.status(500).json({error: "Error al leer el archivo de citas"});
+    }
+    res.json(JSON.parse(data));
+  }
+  );
+});
 /******************************
  * FIN - Citas Medicas
  *****************************/
