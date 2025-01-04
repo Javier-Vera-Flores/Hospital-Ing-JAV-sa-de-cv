@@ -1,3 +1,4 @@
+const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 const username = localStorage.getItem('loggedInUser');
 // Simulación del estado del usuario
@@ -39,25 +40,30 @@ function mostrarBusquedaPorID() {
 // Función para mostrar el listado de citas del usuario logeado
 function mostrarListadoCitas() {
     //quitaremos el contenido de 
-    formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${username}, estas son tus citas</p>`;
+    formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${usuarioLogeado}, estas son tus citas</p>`;
     // Ejemplo de citas obtenidas (pueden venir de un backend)
-
-
-
-    const citas = [
-        { id: 1, fecha: '2025-01-05', hora: '10:00 AM', doctor: 'Dr. Pérez' },
-        { id: 2, fecha: '2025-01-10', hora: '02:00 PM', doctor: 'Dra. López' }
-    ];
-
-    // Generar el listado dinámicamente
-    listaBusqueda.innerHTML = '<h2>Mis Citas</h2>';
-    const ul = document.createElement('ul');
-    citas.forEach(cita => {
-        const li = document.createElement('li');
-        li.textContent = `ID: ${cita.id} - Fecha: ${cita.fecha} - Hora: ${cita.hora} - Doctor: ${cita.doctor}`;
-        ul.appendChild(li);
+    
+    //Llamamos a la función después de que el DOM esté completamente cargado
+    document.addEventListener("DOMContentLoaded", () => {
+        loadCitas(); 
     });
-    listaBusqueda.appendChild(ul);
+
+
+
+    // const citas = [
+    //     { id: 1, fecha: '2025-01-05', hora: '10:00 AM', doctor: 'Dr. Pérez' },
+    //     { id: 2, fecha: '2025-01-10', hora: '02:00 PM', doctor: 'Dra. López' }
+    // ];
+
+    // // Generar el listado dinámicamente
+    // listaBusqueda.innerHTML = '<h2>Mis Citas</h2>';
+    // const ul = document.createElement('ul');
+    // citas.forEach(cita => {
+    //     const li = document.createElement('li');
+    //     li.textContent = `ID: ${cita.id} - Fecha: ${cita.fecha} - Hora: ${cita.hora} - Doctor: ${cita.doctor}`;
+    //     ul.appendChild(li);
+    // });
+    // listaBusqueda.appendChild(ul);
 
 }
 // Función para mostrar el spinner de carga
@@ -119,12 +125,7 @@ function mostrarResultadoBusqueda(idCita) {
 function simularRetraso(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-// Verificar el estado del usuario
-if (usuarioLogeado) {
-    mostrarListadoCitas();
-} else {
-    mostrarBusquedaPorID();
-}
+
 //logica de logeo
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener('DOMContentLoaded', () => {
@@ -150,30 +151,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-async function loadCitas(contenedorSeleccionado){
-    const contenedor = document.querySelector(contenedorSeleccionado);
-    if(!contenedor){
-        console.error(`Contenedor no encontrado: ${containerSelector}`);
-        return;
-    }
+async function loadCitas(){
+    // contenedor --> listado-busqueda
+    //const contenedor = document.querySelector(contenedorSeleccionado);
+        // Mostrar spinner
+    mostrarSpinner();
 
+    // Simular un retraso para obtener los datos (por ejemplo, llamando a un backend)
+    await simularRetraso(2000); // 2 segundos
     try{
-        const response = await fetch(`${SERVER_URL}//citasMedicas`);
+        const response = await fetch(`${SERVER_URL}/citasMedicas`);
         if(!response.ok){
             throw new Error("Error al obtener las citas");
         }
         const citas = await response.json();
-        contenedor.innerHTML = '';
-        citas.forEach(cita =>{
+        
+        listaBusqueda.innerHTML = ''; //limpiamos contenedor
+        // Crear el contenedor principal
+        //const mainContainer = document.createElement('div');
+        listaBusqueda.className = 'container mt-4';
+        listaBusqueda.innerHTML = `
+        <div class="row">
+            <!-- Navegación -->
+            <div class="col-4">
+            <nav id="navbar-example3" class="h-100 flex-column align-items-stretch pe-4 border-end">
+                <nav class="nav nav-pills flex-column" id="nav-items">
+                <!-- Elementos del menú serán generados dinámicamente -->
+                </nav>
+            </nav>
+            </div>
+
+            <!-- Contenido -->
+            <div class="col-8">
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" 
+                class="scrollspy-example" tabindex="0" id="content-container">
+                <!-- Secciones serán generadas dinámicamente -->
+            </div>
+            </div>
+        </div>
+        `;
+            // Contenedores dinámicos
+            const navItems = document.getElementById('nav-items');
+            const contentContainer = document.getElementById('content-container');
+            citas.forEach(cita =>{
+
+                // Crear enlace en el menú de navegación
+                const navLink = document.createElement('a');
+                navLink.className = 'nav-link';
+                navLink.href = `#item-${cita.id}`;
+                navLink.textContent = `Consulta ${cita.id}`;
+                navItems.appendChild(navLink);
+            // const citaDiv = document.createElement("div");
+            // citaDiv.classList.add("cita"); //añadimos la clase cita al div
+              // Crear contenido en la sección principal
             const citaDiv = document.createElement("div");
-            citaDiv.classList.add("cita"); //añadimos la clase cita al div
-            
+            citaDiv.id = `item-${cita.id}`;
+
+            citaDiv.innerHTML = `
+            <h4>Consulta ID: ${cita.id}</h4>
+            <p><strong>Paciente:</strong> ${cita.paciente}</p>
+            <p><strong>Edad:</strong> ${cita.edad}</p>
+            <p><strong>Usuario:</strong> ${cita.username}</p>
+            <p><strong>Fecha:</strong> ${cita.fecha}</p>
+            <p><strong>Hora:</strong> ${cita.hora}</p>
+            <p><strong>Especialidad:</strong> ${cita.idEspecialidad}</p>
+            <p><strong>Consultorio:</strong> ${cita.consultorio}</p>
+            <p><strong>ID Doctor:</strong> ${cita.idDoctor}</p>
+            <p><strong>Descripción:</strong> ${cita.descripcion}</p>
+            <p><strong>Doctor:</strong> ${cita.nombreDoctor}</p>
+            <img src="${cita.imagenDoctor}" alt="Imagen de ${cita.nombreDoctor}" style="width:100px;height:100px;border-radius:50%;"><br><br>
+            <hr></hr>`;
+            contentContainer.appendChild(citaDiv);
+
         });
     }catch(error){
         console.error(error);
-        contenedor.innerHTML = `<p>No se pudo cargar correctamente las citas</p>`;
+        listaBusqueda.innerHTML = `<p>No se pudo cargar correctamente las citas</p>`;
     }
 
 
 }
-
+// Verificar el estado del usuario
+if (usuarioLogeado) {
+    mostrarListadoCitas();
+} else {
+    mostrarBusquedaPorID();
+}
