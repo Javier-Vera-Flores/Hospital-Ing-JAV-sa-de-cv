@@ -41,6 +41,22 @@ function mostrarBusquedaPorID() {
 function mostrarListadoCitas() {
     //quitaremos el contenido de 
     formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${usuarioLogeado}, estas son tus citas</p>`;
+    const botonesAcciones = document.createElement('article');
+    botonesAcciones.innerHTML = `
+    <button type="button" class="btn btn-success">Nueva cita</button>
+    <button type="button" class="btn btn-warning">Imprimir</button>
+    <button type="button" class="btn btn-info">Recargar</button>
+    <button type="button" class="btn btn-dark">Info</button>
+
+    <button type="button" class="btn btn-link">Link</button>
+            <form id="buscar-cita" class="form-busqueda">
+          <label for="idCita">Ingresa el ID de tu cita:</label>
+          <input type="text" id="idCita" name="idCita" required>
+          <button type="submit">Buscar</button>
+        </form>
+    
+    `;
+    formBusqueda.appendChild(botonesAcciones);
     // Ejemplo de citas obtenidas (pueden venir de un backend)
     
     //Llamamos a la función después de que el DOM esté completamente cargado
@@ -220,7 +236,14 @@ async function loadCitas(){
             <p><strong>Descripción:</strong> ${cita.descripcion}</p>
             <p><strong>Doctor:</strong> ${cita.nombreDoctor}</p>
             <img src="${cita.imagenDoctor}" alt="Imagen de ${cita.nombreDoctor}" style="width:100px;height:100px;border-radius:50%;"><br><br>
-            <hr></hr>`;
+            <div class="botonesCita">
+                <button type="button" class="btn btn-outline-primary botonModificar" id="boton1">Modificar</button>
+                <button type="button" class="btn btn-outline-danger botonEliminar" id="boton2">Eliminar</button>
+            </div>
+            
+            <hr></hr>
+            
+            `;
             contentContainer.appendChild(citaDiv);
 
         });

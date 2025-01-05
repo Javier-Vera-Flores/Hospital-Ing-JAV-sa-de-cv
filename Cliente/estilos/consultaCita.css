@@ -243,9 +243,22 @@ footer {
 .scrollspy-example {
     position: relative;
     /* height: 400px; */
-    height: 600px;
+    height: 650px;
     overflow-y: scroll;
     padding: 20px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
+}
+/* estilos para modificar los botones de un cita */
+.botonesCita{
+    display: flex;
+    flex-direction: row-reverse;
+    /* align-items: center; */
+}
+.botonModificar{
+    order: 1;
+    
+}
+.botonEliminar{
+    order: 0;
 }
