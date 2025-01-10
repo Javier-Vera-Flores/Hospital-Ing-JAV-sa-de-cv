@@ -1,3 +1,6 @@
+# Observaciones
+- [ ] Javier que opinas de hacer global la direccion IP de los js de cliente
+
 # Sistema de Gestión de Citas Médicas
 
 Este proyecto es un sistema completo para la gestión de citas médicas. Incluye un cliente desarrollado en HTML, CSS y JavaScript, y un servidor backend construido con Node.js y Express. El objetivo es proporcionar una plataforma sencilla pero funcional para la administración de usuarios, doctores, especialidades médicas y citas.
