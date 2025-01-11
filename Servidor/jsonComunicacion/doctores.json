@@ -38,5 +38,45 @@
       "idDoctor": "8",
       "nombre": "Javier Mendoza García",
       "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor8.jpg"
-  }
+  },
+  {
+    "idDoctor": "9",
+    "nombre": "Sofía Hernández López",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor9.jpeg"
+},
+{
+    "idDoctor": "10",
+    "nombre": "José Antonio García Ramírez",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor10.jpeg"
+},
+{
+    "idDoctor": "11",
+    "nombre": "Luis Fernando Martínez Pérez",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor11.jpeg"
+},
+{
+    "idDoctor": "12",
+    "nombre": "Valeria Jiménez Morales",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor12.jpeg"
+},
+{
+    "idDoctor": "13",
+    "nombre": "Fernanda Rodríguez Torres",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor13.jpeg"
+},
+{
+    "idDoctor": "14",
+    "nombre": "Daniela Gómez Castillo",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor14.jpeg"
+},
+{
+    "idDoctor": "15",
+    "nombre": "Miguel Ángel Sánchez Rivera",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor15.jpeg"
+},
+{
+    "idDoctor": "16",
+    "nombre": "Alejandro Ruiz Hernández",
+    "imagen": "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor16.jpeg"
+}
 ]
