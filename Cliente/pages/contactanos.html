@@ -19,13 +19,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
   <!-- Librerías para mostrar el mapa -->
-  <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
-  <script src="../scripts/mapkick.js"></script>
-  <script>
-    // Configuración inicial para Mapkick
-    Mapkick.options = { style: "https://demotiles.maplibre.org/style.json" };
-  </script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 
 <header>
@@ -60,14 +55,15 @@
   <!-- Sección de mapa -->
   <h1>Dirección</h1>
   <div id="map" style="height: 400px"></div>
-
   <script>
-    // Inicialización del mapa con las coordenadas específicas
-    new Mapkick.Map("map", [
-      { latitude: 19.5033613, longitude: -99.1870307 },
-    ]);
+    var map = L.map('map').setView([19.5033613, -99.1870307], 17);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.marker([19.5033613, -99.1870307]).addTo(map)
+        .bindPopup('Ubicación')
+        .openPopup();
   </script>
-
   <!-- Sección del formulario de contacto -->
   <h1>Contáctanos</h1>
   <form id="form">
