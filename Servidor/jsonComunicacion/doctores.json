@@ -173,5 +173,30 @@
         "idDoctor": "35",
         "nombre": "Paula Andrea Silva Domínguez",
         "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor35.jpg"
+    },
+    {
+        "idDoctor": "36",
+        "nombre": "*",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor36.jpg"
+    },
+    {
+        "idDoctor": "37",
+        "nombre": "*",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor37.jpg"
+    },
+    {
+        "idDoctor": "38",
+        "nombre": "*",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor38.jpg"
+    },
+    {
+        "idDoctor": "39",
+        "nombre": "*",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor39.jpg"
+    },
+    {
+        "idDoctor": "40",
+        "nombre": "*",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor40.jpg"
     }
 ]
