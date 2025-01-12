@@ -78,5 +78,100 @@
         "idDoctor": "16",
         "nombre": "Alejandro Ruiz Hernández",
         "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor16.jpeg"
+    },
+    {
+        "idDoctor": "17",
+        "nombre": "Ana María López Hernández",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor17.jpeg"
+    },
+    {
+        "idDoctor": "18",
+        "nombre": "Juan Carlos Pérez Rodríguez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor18.jpeg"
+    },
+    {
+        "idDoctor": "19",
+        "nombre": "María Fernanda Sánchez Jiménez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor19.jpeg"
+    },
+    {
+        "idDoctor": "20",
+        "nombre": "Carlos Eduardo García Torres",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor20.jpeg"
+    },
+    {
+        "idDoctor": "21",
+        "nombre": "Lucía Alejandra Fernández Morales",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor21.jpeg"
+    },
+    {
+        "idDoctor": "22",
+        "nombre": "Miguel Ángel Hernández Ruiz",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor22.jpeg"
+    },
+    {
+        "idDoctor": "23",
+        "nombre": "Sofía Isabel Martínez Castro",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor23.jpeg"
+    },
+    {
+        "idDoctor": "24",
+        "nombre": "Isabel Elena Gómez Ramírez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor24.jpeg"
+    },
+    {
+        "idDoctor": "25",
+        "nombre": "Elena Victoria Jiménez Salinas",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor25.jpeg"
+    },
+    {
+        "idDoctor": "26",
+        "nombre": "Jorge Alberto Ruiz Campos",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor26.jpeg"
+    },
+    {
+        "idDoctor": "27",
+        "nombre": "Carmen Guadalupe Rodríguez Flores",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor27.jpeg"
+    },
+    {
+        "idDoctor": "28",
+        "nombre": "Luis Alejandro Vargas Soto",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor28.jpeg"
+    },
+    {
+        "idDoctor": "29",
+        "nombre": "Roberto Manuel Morales González",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor29.jpeg"
+    },
+    {
+        "idDoctor": "30",
+        "nombre": "Diego Armando Torres Martínez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor30.jpeg"
+    },
+    {
+        "idDoctor": "31",
+        "nombre": "Fernando Adrián Castillo Luna",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor31.jpeg"
+    },
+    {
+        "idDoctor": "32",
+        "nombre": "Héctor Samuel Mendoza Rojas",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor32.jpeg"
+    },
+    {
+        "idDoctor": "33",
+        "nombre": "Pedro Julián Salinas Vera",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor33.jpeg"
+    },
+    {
+        "idDoctor": "34",
+        "nombre": "Víctor Alfonso Lozano Chávez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor34.jpeg"
+    },
+    {
+        "idDoctor": "35",
+        "nombre": "Paula Andrea Silva Domínguez",
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor35.jpeg"
     }
 ]
