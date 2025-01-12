@@ -1,5 +1,7 @@
 const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
+
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
+
 const username = localStorage.getItem('loggedInUser');
 // Simulación del estado del usuario
 //const usuarioLogeado = false; // Cambia a true si el usuario está logeado

@@ -1,6 +1,7 @@
 /* General Styles */
 
 body {
+  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Asegura que el cuerpo tenga al menos el alto de la ventana */

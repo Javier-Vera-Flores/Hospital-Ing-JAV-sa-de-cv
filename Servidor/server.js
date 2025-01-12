@@ -90,6 +90,22 @@ app.post("/login", (req, res) => {
 app.post("/register", (req, res) => {
   const { username, password } = req.body;
 
+  // Función para validar la contraseña
+  const isValidPassword = (password) => {
+    // Define aquí los criterios de la contraseña
+    // Una contraseña valida es de al menos 8 caracteres, incluye letras y números
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  // Validar si la contraseña cumple con los criterios
+  if (!isValidPassword(password)) {
+    return res.json({ 
+      success: false, 
+      message: "La contraseña no cumple con los requisitos (mínimo 8 caracteres, debe incluir letras y números)" 
+    });
+  }
+
   fs.readFile(path.join(__dirname, "./jsonComunicacion/users.json"), "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({
@@ -122,6 +138,7 @@ app.post("/register", (req, res) => {
     );
   });
 });
+
 /******************************
  * FIN - Login
  *****************************/

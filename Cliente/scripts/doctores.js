@@ -1,5 +1,6 @@
 const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
+
 // Función para obtener y mostrar doctores en el HTML
 function loadDoctors(containerSelector) {
     // Seleccionamos el contenedor donde se mostrarán los doctores

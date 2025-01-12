@@ -4,26 +4,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Título de la página -->
   <title>Contáctanos</title>
-  <link rel="stylesheet" href="../estilos/contactanos.css" />
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-  <link href="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.css" rel="stylesheet" />
-  <script src="https://unpkg.com/maplibre-gl@2.4.0/dist/maplibre-gl.js"></script>
-  <script src="../scripts/mapkick.js"></script>
-  <script>
-    Mapkick.options = { style: "https://demotiles.maplibre.org/style.json" };
-  </script>
+  <!-- Estilos CSS personalizados -->
+  <link rel="stylesheet" href="../estilos/contactanos.css" />
+
+  <!-- Librerías para envío de correos -->
+  <!-- EmailJS para integración con servicios de correo -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>  
+
+  <!-- Iconos e ícono de la página -->
+  <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/icono.jpg">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  
+  <!-- Librerías para mostrar el mapa -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 </head>
 
 <header>
   <div class="header-container">
+    <!-- Logo del sitio web -->
     <div class="logo">
       <img
         src="https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/9153ef5770ea15b43be4d72f90852b55475878f1/Final/Cliente/Imagenes/logo.jpg"
         alt="Logo" />
     </div>
+
+    <!-- Menú de navegación -->
     <nav>
       <ul class="nav-links">
         <li><a href="../index.html">Inicio</a></li>
@@ -33,7 +42,8 @@
         <li><a href="contactanos.html">Contáctanos</a></li>
       </ul>
     </nav>
-    <!-- Contenedor de usuario y botón de cierre de sesión -->
+
+    <!-- Saludo de usuario y botón de cierre de sesión -->
     <div class="user-container">
       <div id="userGreeting">Hola, Usuario</div>
       <button id="logoutButton">Cerrar Sesión</button>
@@ -42,15 +52,30 @@
 </header>
 
 <body>
+  <!-- Sección de mapa -->
   <h1>Dirección</h1>
   <div id="map" style="height: 400px"></div>
-
   <script>
-    new Mapkick.Map("map", [
-      { latitude: 19.5033613, longitude: -99.1870307 },
-    ]);
-  </script>
+    var map = L.map('map').setView([19.5029848, -99.1859738], 18);
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Icono personalizado con RAW URL de GitHub
+    var customIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/mapa.png', // URL RAW
+        iconSize: [40, 40],  // Tamaño del icono
+        iconAnchor: [20, 40], // Punto de anclaje del icono
+        popupAnchor: [0, -40] // Ajuste del popup
+    });
+
+    // Agregar marcador con icono personalizado
+    L.marker([19.5029848, -99.1859738], { icon: customIcon }).addTo(map)
+        .bindPopup('Ubicación Específica')
+        .openPopup();
+  </script>
+  <!-- Sección del formulario de contacto -->
   <h1>Contáctanos</h1>
   <form id="form">
     <div class="field">
@@ -67,12 +92,16 @@
     </div>
     <input type="submit" id="button" value="Enviar Mensaje" />
   </form>
+
+  <!-- Inicialización de EmailJS -->
   <script type="text/javascript">
     emailjs.init("x2vvcMidNsRBgrVr0");
   </script>
+
+  <!-- Script personalizado para la funcionalidad del formulario -->
   <script src="../scripts/contactanos.js"></script>
 
-  <!--No cambiar lo de abajo-->
+  <!-- Pie de página con información de contacto -->
   <footer>
     <div class="footer-container">
       <div class="address">
@@ -83,7 +112,6 @@
       </div>
       <div class="company">
         <p>Ingenieros JAV S.A C.V</p>
-        <!--Los catalogos como lo definimos?-->
         <p>Consulta nuestro catálogo de precios</p>
       </div>
       <div class="social-media">
@@ -96,7 +124,7 @@
           </span>
           <span>
             <a href="https://x.com/UAMAzcOficial" target="_blank">
-              <i class="fab fa-x-twitter"></i> Twitter
+              <i class="fab fa-x"></i> X
             </a>
           </span>
         </div>
