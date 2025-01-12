@@ -56,12 +56,23 @@
   <h1>Dirección</h1>
   <div id="map" style="height: 400px"></div>
   <script>
-    var map = L.map('map').setView([19.5033613, -99.1870307], 17);
+    var map = L.map('map').setView([19.5029848, -99.1859738], 18);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-    L.marker([19.5033613, -99.1870307]).addTo(map)
-        .bindPopup('Ubicación')
+
+    // Icono personalizado con RAW URL de GitHub
+    var customIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/mapa.png', // URL RAW
+        iconSize: [40, 40],  // Tamaño del icono
+        iconAnchor: [20, 40], // Punto de anclaje del icono
+        popupAnchor: [0, -40] // Ajuste del popup
+    });
+
+    // Agregar marcador con icono personalizado
+    L.marker([19.5029848, -99.1859738], { icon: customIcon }).addTo(map)
+        .bindPopup('Ubicación Específica')
         .openPopup();
   </script>
   <!-- Sección del formulario de contacto -->
