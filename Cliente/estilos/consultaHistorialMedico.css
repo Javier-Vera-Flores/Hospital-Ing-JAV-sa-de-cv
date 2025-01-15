@@ -143,7 +143,10 @@ footer {
 .icons a:hover {
   color: #a5d6a7; /* Light green */
 }
-
+.footer-container {
+  flex-direction: column;
+  text-align: center;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .header-container {
@@ -157,10 +160,5 @@ footer {
 
   .nav-links li {
     margin: 10px 0;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    text-align: center;
   }
 }
