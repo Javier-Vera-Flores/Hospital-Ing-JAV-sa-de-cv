@@ -5,7 +5,7 @@
     },
     {
       "idEspecialidad": "B",
-      "nombre": "Medicina Familiar"
+      "nombre": "Cardiología"
     },
     {
       "idEspecialidad": "C",
@@ -13,23 +13,39 @@
     },
     {
       "idEspecialidad": "D",
-      "nombre": "Geriatría"
+      "nombre": "Neurología"
     },
     {
       "idEspecialidad": "E",
-      "nombre": "Medicina Preventiva"
+      "nombre": "Dermatología"
     },
     {
       "idEspecialidad": "F",
-      "nombre": "Urgencias Médicas"
+      "nombre": "Pediatría"
     },
     {
       "idEspecialidad": "G",
-      "nombre": "Imagenología (Radiología, Tomografía, Resonancia Magnética)"
+      "nombre": "Traumatología"
     },
     {
       "idEspecialidad": "H",
-      "nombre": "Laboratorio Clínico"
+      "nombre": "Ginecología"
+    },
+    {
+      "idEspecialidad": "I",
+      "nombre": "Oftalmología"
+    },
+    {
+      "idEspecialidad": "J",
+      "nombre": "Endocrinología"
+    },
+    {
+      "idEspecialidad": "K",
+      "nombre": "Medicina Preventiva"
+    },
+    {
+      "idEspecialidad": "L",
+      "nombre": "Medicina General"
     }
   ]
   

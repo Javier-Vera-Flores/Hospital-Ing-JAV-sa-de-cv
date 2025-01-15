@@ -93,13 +93,13 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { username, password } = req.body;
+  const { username, name, password } = req.body;
 
   // Función para validar la contraseña
   const isValidPassword = (password) => {
     // Define aquí los criterios de la contraseña
     // Una contraseña valida es de al menos 8 caracteres, incluye letras y números
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
   };
 
@@ -130,7 +130,7 @@ app.post("/register", (req, res) => {
         return res.json({ success: false, message: "El usuario ya existe" });
       }
 
-      users.push({ username, password });
+      users.push({ username, name, password });
 
       fs.writeFile(
         path.join(__dirname, "./jsonComunicacion/users.json"),
@@ -158,16 +158,59 @@ app.post("/register", (req, res) => {
  *****************************/
 // Ruta para servir el archivo de doctores
 app.get("/doctores", (req, res) => {
-  const filePath = path.join(__dirname, "./jsonComunicacion/doctores.json");
-  fs.readFile(filePath, "utf8", (err, data) => {
+  const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
+  const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
+
+  // Leer ambos archivos
+  fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
     if (err) {
       return res
         .status(500)
         .json({ error: "Error al leer el archivo de doctores" });
     }
-    res.json(JSON.parse(data));
+
+    fs.readFile(especialidadesPath, "utf8", (err, especialidadesData) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Error al leer el archivo de especialidades" });
+      }
+
+      try {
+        // Parsear los datos de los archivos
+        const doctores = JSON.parse(doctoresData);
+        const especialidades = JSON.parse(especialidadesData);
+
+        // Crear un diccionario para acceder a las especialidades
+        const especialidadesDict = {};
+        especialidades.forEach((e) => {
+          especialidadesDict[e.idEspecialidad] = e.nombre;
+        });
+
+        // Combinar la información de doctores con especialidades
+        const doctoresConEspecialidad = doctores.map((doctor) => ({
+          ...doctor,
+          especialidad: especialidadesDict[doctor.idEspecialidad] || "Especialidad no encontrada",
+        }));
+
+        // Ordenar por especialidad (alfabéticamente)
+        doctoresConEspecialidad.sort((a, b) => {
+          if (a.especialidad < b.especialidad) return -1;
+          if (a.especialidad > b.especialidad) return 1;
+          return 0;
+        });
+
+        // Responder con el resultado combinado y ordenado
+        res.json(doctoresConEspecialidad);
+      } catch (parseError) {
+        res
+          .status(500)
+          .json({ error: "Error al procesar los datos JSON" });
+      }
+    });
   });
 });
+
 /******************************
  * FIN - Nuestro equipo médico
  *****************************/
