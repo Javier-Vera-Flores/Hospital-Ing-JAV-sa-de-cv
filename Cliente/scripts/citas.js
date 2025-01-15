@@ -43,7 +43,7 @@ function mostrarListadoCitas() {
   formBusqueda.innerHTML = `<p style="color:red; font-size: 30px">Hola ${usuarioLogeado}, estas son tus citas</p>`;
   const botonesAcciones = document.createElement("article");
   botonesAcciones.innerHTML = `
-    <button type="button" class="btn btn-success">Nueva cita</button>
+    <button type="button" class="btn btn-success" id="nuevaCita">Nueva cita</button>
     <button type="button" class="btn btn-warning">Imprimir</button>
     <button type="button" class="btn btn-info">Recargar</button>
     <button type="button" class="btn btn-dark">Info</button>
@@ -58,6 +58,95 @@ function mostrarListadoCitas() {
     `;
   formBusqueda.appendChild(botonesAcciones);
   // Ejemplo de citas obtenidas (pueden venir de un backend)
+  const botonNuevaCita = document.querySelector("#nuevaCita");
+  botonNuevaCita.addEventListener("click", () => {
+    //alert("Agregando nueva cita");
+    // Crear contenedor del modal
+    const modalContainer = document.createElement("div");
+    modalContainer.className = "modal fade";
+    modalContainer.id = "dynamicModal";
+    modalContainer.tabIndex = -1;
+    modalContainer.setAttribute("aria-hidden", "true");
+
+    // Contenido del modal
+    modalContainer.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Ingresa los datos de la nueva cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                    <form action="#" method="post" class="form-cita">
+                        <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="Juan Medina Ocampo" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="edad" class="form-label">Edad:</label>
+                        <input type="number" id="edad" name="edad" value="18" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="fechaCita" class="form-label">Fecha de Cita:</label>
+                        <input type="date" id="fechaCita" name="fechaCita" value="2024-12-19" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="horaCita" class="form-label">Hora de Cita:</label>
+                        <input type="time" id="horaCita" name="horaCita" value="08:00" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="idEspecialidad" class="form-label">Especialidad:</label>
+                        <select id="idEspecialidad" name="idEspecialidad" class="form-select" required>
+                            <option value="Cardiología" selected>Cardiología</option>
+                            <option value="Neurología">Neurología</option>
+                            <option value="Pediatría">Pediatría</option>
+                            <option value="Ginecología">Ginecología</option>
+                            <option value="Dermatología">Dermatología</option>
+                        </select>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" class="form-control" required>Paciente solicita cita con especialista ya que indicó presentar dolor en el pecho y al valorar sus análisis se determinó necesario.</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                        <label for="nombreDoctor" class="form-label">Nombre del Doctor:</label>
+                        <select id="nombreDoctor" name="nombreDoctor" class="form-select" required>
+                            <option value="María López Hernández" selected>María López Hernández</option>
+                            <option value="Carlos Rodríguez González">Carlos Rodríguez González</option>
+                            <option value="Laura Pérez Fernández">Laura Pérez Fernández</option>
+                            <option value="Juan Torres Martínez">Juan Torres Martínez</option>
+                        </select>
+                        </div>
+
+                        <!--<button type="submit" class="btn btn-primary w-100">Enviar Cita</button>-->
+                    </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Generar cita</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+    // Agregar modal al cuerpo del documento
+    document.body.appendChild(modalContainer);
+
+    // Inicializar y mostrar el modal
+    const bootstrapModal = new bootstrap.Modal(modalContainer);
+    bootstrapModal.show();
+
+    // Eliminar el modal del DOM al cerrarlo
+    modalContainer.addEventListener("hidden.bs.modal", function () {
+      modalContainer.remove();
+    });
+  });
 
   //Llamamos a la función después de que el DOM esté completamente cargado
   document.addEventListener("DOMContentLoaded", () => {
@@ -261,14 +350,92 @@ async function loadCitas() {
 
         // Contenido del modal
         modalContainer.innerHTML = `
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Título del Modal</h5>
+          <h5 class="modal-title">Datos de la cita a modificar</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>El contenido del cuerpo del modal va aquí.</p>
+                      <form id="formModificarCita">
+              <div class="mb-3">
+                <label for="paciente" class="form-label">Paciente</label>
+                <input type="text" id="paciente" name="paciente" class="form-control" value="${
+                  cita.paciente
+                }" required>
+              </div>
+              <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" id="edad" name="edad" class="form-control" value="${
+                  cita.edad
+                }" required>
+              </div>
+              <div class="mb-3">
+                <label for="fecha" class="form-label">Fecha</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" value="${
+                  cita.fecha
+                }" required>
+              </div>
+              <div class="mb-3">
+                <label for="hora" class="form-label">Hora</label>
+                <input type="time" id="hora" name="hora" class="form-control" value="${
+                  cita.hora
+                }" required>
+              </div>
+              <div class="mb-3">
+                <label for="especialidad" class="form-label">Especialidad</label>
+                <select id="especialidad" name="especialidad" class="form-select" required>
+                  <option value="Cardiología" ${
+                    cita.idEspecialidad === "Cardiología" ? "selected" : ""
+                  }>Cardiología</option>
+                  <option value="Neurología" ${
+                    cita.idEspecialidad === "Neurología" ? "selected" : ""
+                  }>Neurología</option>
+                  <option value="Pediatría" ${
+                    cita.idEspecialidad === "Pediatría" ? "selected" : ""
+                  }>Pediatría</option>
+                  <option value="Ginecología" ${
+                    cita.idEspecialidad === "Ginecología" ? "selected" : ""
+                  }>Ginecología</option>
+                  <option value="Dermatología" ${
+                    cita.idEspecialidad === "Dermatología" ? "selected" : ""
+                  }>Dermatología</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <textarea id="descripcion" name="descripcion" class="form-control" required>${
+                  cita.descripcion
+                }</textarea>
+              </div>
+              <div class="mb-3">
+                <label for="nombreDoctor" class="form-label">Doctor</label>
+                <select id="nombreDoctor" name="nombreDoctor" class="form-select" required>
+                  <option value="María López Hernández" ${
+                    cita.nombreDoctor === "María López Hernández"
+                      ? "selected"
+                      : ""
+                  }>María López Hernández</option>
+                  <option value="Carlos Rodríguez González" ${
+                    cita.nombreDoctor === "Carlos Rodríguez González"
+                      ? "selected"
+                      : ""
+                  }>Carlos Rodríguez González</option>
+                  <option value="Laura Pérez Fernández" ${
+                    cita.nombreDoctor === "Laura Pérez Fernández"
+                      ? "selected"
+                      : ""
+                  }>Laura Pérez Fernández</option>
+                  <option value="Juan Torres Martínez" ${
+                    cita.nombreDoctor === "Juan Torres Martínez"
+                      ? "selected"
+                      : ""
+                  }>Juan Torres Martínez</option>
+                </select>
+              </div>
+              <!--<button type="submit" class="btn btn-primary">Guardar Cambios</button>-->
+            </form>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -291,7 +458,44 @@ async function loadCitas() {
         });
       });
       botonEliminar.addEventListener("click", () => {
-        alert("Eliminar");
+        //alert("Eliminar");
+        // Crear contenedor del modal
+        const modalContainer = document.createElement("div");
+        modalContainer.className = "modal fade";
+        modalContainer.id = "dynamicModal";
+        modalContainer.tabIndex = -1;
+        modalContainer.setAttribute("aria-hidden", "true");
+
+        // Contenido del modal
+        modalContainer.innerHTML = `
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Esta seguro de querer eliminar la cita?.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Eliminar cita</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+        // Agregar modal al cuerpo del documento
+        document.body.appendChild(modalContainer);
+
+        // Inicializar y mostrar el modal
+        const bootstrapModal = new bootstrap.Modal(modalContainer);
+        bootstrapModal.show();
+
+        // Eliminar el modal del DOM al cerrarlo
+        modalContainer.addEventListener("hidden.bs.modal", function () {
+          modalContainer.remove();
+        });
       });
     });
   } catch (error) {
