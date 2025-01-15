@@ -87,7 +87,7 @@ async function agregarUsuario(newUsername, newName, newPassword) {
       messageElement.textContent = "Usuario registrado exitosamente";
       messageElement.style.color = "green";
     } else {
-      messageElement.textContent = `Error al registrar usuario: ${result.message}`;
+      messageElement.innerHTML = result.message;
       messageElement.style.color = "red";
     }
   } catch (error) {

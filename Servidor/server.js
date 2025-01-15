@@ -94,21 +94,55 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { username, name, password } = req.body;
-
+  var minusculas=false;
+  var mayusculas=false;
+  var numeros=false;
+  var caracteres=false;
+  var longitud=false;
+  var espacios=false;
   // Función para validar la contraseña
   const isValidPassword = (password) => {
     // Define aquí los criterios de la contraseña
     // Una contraseña valida es de al menos 8 caracteres, incluye letras y números
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return passwordRegex.test(password);
+    var i=0;
+    while(i<password.length){
+      if(password.charAt(i)==" "){
+        espacios=true;
+      }
+      if(password.charAt(i).match(/[a-z]/)){
+        minusculas=true;
+      }
+      if(password.charAt(i).match(/[A-Z]/)){
+        mayusculas=true;
+      }
+      if(password.charAt(i).match(/\d/)){
+        numeros=true;
+      }
+      if(password.charAt(i).match(/[!@#$%^&*(),.?":{}|<>]/)){
+        caracteres=true;
+      }
+      i++;
+    }
+    if(password.length>=8){
+      longitud=true;
+    }
+    if(minusculas==true && mayusculas==true && numeros==true && caracteres==true && longitud==true && espacios==false){
+      return true;
+    }
+    return false;
   };
 
-  // Validar si la contraseña cumple con los criterios
+  // Función para validar la contraseña
   if (!isValidPassword(password)) {
     return res.json({
       success: false,
-      message:
-        "La contraseña no cumple con los requisitos (mínimo 8 caracteres, debe incluir letras y números)",
+      message: "<strong>Los requisitos de la contraseña son:</strong><br>" +
+        `${cumple(minusculas)} Al menos una letra minúscula (a-z)<br>` +
+        `${cumple(mayusculas)} Al menos una letra mayúscula (A-Z)<br>` +
+        `${cumple(numeros)} Al menos un número (0-9)<br>` +
+        `${cumple(caracteres)} Al menos un carácter especial (!@#$%^&*(),.?":{}|<>)<br>` +
+        `${cumple(longitud)} Longitud mínima de 8 caracteres<br>` +
+        `${cumple(!espacios)} Sin espacios en blanco<br>`
     });
   }
 
@@ -148,6 +182,10 @@ app.post("/register", (req, res) => {
     }
   );
 });
+
+function cumple(condicion) {
+  return condicion ? "✅" : "❌";
+}
 
 /******************************
  * FIN - Login
@@ -214,6 +252,7 @@ app.get("/doctores", (req, res) => {
 /******************************
  * FIN - Nuestro equipo médico
  *****************************/
+
 //#######################################################################################
 /******************************
  * INICIO - Servidor
