@@ -90,13 +90,39 @@ nav ul {
   color: #1b5e20; /* Verde intenso para el texto del título */
 }
 
-/* Contenedor de doctores */
-.doctores {
+/* Contenedor de especialidades */
+.specialty-section {
+  margin-bottom: 40px;
+}
+
+.specialty-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e7d32; /* Verde oscuro */
+  margin-bottom: 15px;
+  border-left: 5px solid #1b5e20; /* Verde intenso */
+  padding-left: 10px;
+}
+
+/* Contenedor horizontal de doctores */
+.doctors-container {
   display: flex;
-  justify-content: start; /* Alinea doctores al inicio */
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  gap: 20px; /* Espaciado entre los doctores */
+  overflow-x: auto; /* Scroll horizontal si es necesario */
+  padding-bottom: 10px;
+}
+
+.doctors-container::-webkit-scrollbar {
+  height: 8px; /* Altura del scroll horizontal */
+}
+
+.doctors-container::-webkit-scrollbar-thumb {
+  background-color: #2e7d32; /* Color del scroll */
+  border-radius: 4px;
+}
+
+.doctors-container::-webkit-scrollbar-track {
+  background-color: #c8e6c9; /* Fondo del scroll */
 }
 
 /* Cada doctor */
@@ -105,8 +131,9 @@ nav ul {
   background-color: #c8e6c9; /* Verde muy claro */
   padding: 15px;
   border-radius: 10px;
-  width: 200px;
+  width: 150px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  flex: 0 0 auto; /* Evita que se encojan dentro del contenedor */
 }
 
 /* Imagen circular */
@@ -128,13 +155,18 @@ nav ul {
 
 /* Estilo responsivo */
 @media (max-width: 768px) {
-  .doctores {
-    flex-direction: column;
-    align-items: center;
+  .doctors-container {
+    justify-content: center;
+    gap: 10px;
   }
 
   .doctor {
-    width: 90%;
+    width: 120px;
+  }
+
+  .doctor img {
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -195,6 +227,7 @@ footer {
     text-align: center;
   }
 }
+
 footer .company a {
   color: inherit; /* Usa el color del texto del contenedor padre */
   text-decoration: none; /* Elimina el subrayado */

@@ -2,201 +2,241 @@
     {
         "idDoctor": "1",
         "nombre": "María López Hernández",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor1.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor1.jpg",
+        "idEspecialidad": "A"
     },
     {
         "idDoctor": "2",
         "nombre": "Juan Pérez Martínez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor2.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor2.jpg",
+        "idEspecialidad": "B"
     },
     {
         "idDoctor": "3",
         "nombre": "Ana Sánchez Morales",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor3.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor3.jpg",
+        "idEspecialidad": "C"
     },
     {
         "idDoctor": "4",
         "nombre": "Gabriela Ramírez Ortiz",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor4.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor4.jpg",
+        "idEspecialidad": "D"
     },
     {
         "idDoctor": "5",
         "nombre": "Patricia Castro Vargas",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor5.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor5.jpg",
+        "idEspecialidad": "E"
     },
     {
         "idDoctor": "6",
         "nombre": "Carlos Gómez Rodríguez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor6.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor6.jpg",
+        "idEspecialidad": "F"
     },
     {
         "idDoctor": "7",
         "nombre": "Luis Fernández Torres",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor7.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor7.jpg",
+        "idEspecialidad": "G"
     },
     {
         "idDoctor": "8",
         "nombre": "Javier Mendoza García",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor8.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor8.jpg",
+        "idEspecialidad": "H"
     },
     {
         "idDoctor": "9",
         "nombre": "Sofía Hernández López",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor9.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor9.jpeg",
+        "idEspecialidad": "I"
     },
     {
         "idDoctor": "10",
         "nombre": "José Antonio García Ramírez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor10.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor10.jpeg",
+        "idEspecialidad": "J"
     },
     {
         "idDoctor": "11",
         "nombre": "Luis Fernando Martínez Pérez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor11.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor11.jpeg",
+        "idEspecialidad": "K"
     },
     {
         "idDoctor": "12",
         "nombre": "Valeria Jiménez Morales",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor12.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor12.jpeg",
+        "idEspecialidad": "L"
     },
     {
         "idDoctor": "13",
         "nombre": "Fernanda Rodríguez Torres",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor13.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor13.jpeg",
+        "idEspecialidad": "A"
     },
     {
         "idDoctor": "14",
         "nombre": "Daniela Gómez Castillo",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor14.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor14.jpeg",
+        "idEspecialidad": "B"
     },
     {
         "idDoctor": "15",
         "nombre": "Miguel Ángel Sánchez Rivera",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor15.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor15.jpeg",
+        "idEspecialidad": "C"
     },
     {
         "idDoctor": "16",
         "nombre": "Alejandro Ruiz Hernández",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor16.jpeg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor16.jpeg",
+        "idEspecialidad": "D"
     },
     {
         "idDoctor": "17",
         "nombre": "Ana María López Hernández",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor17.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor17.jpg",
+        "idEspecialidad": "E"
     },
     {
         "idDoctor": "18",
         "nombre": "Juan Carlos Pérez Rodríguez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor18.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor18.jpg",
+        "idEspecialidad": "F"
     },
     {
         "idDoctor": "19",
         "nombre": "María Fernanda Sánchez Jiménez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor19.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor19.jpg",
+        "idEspecialidad": "G"
     },
     {
         "idDoctor": "20",
         "nombre": "Carlos Eduardo García Torres",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor20.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor20.jpg",
+        "idEspecialidad": "H"
     },
     {
         "idDoctor": "21",
         "nombre": "Lucía Alejandra Fernández Morales",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor21.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor21.jpg",
+        "idEspecialidad": "I"
     },
     {
         "idDoctor": "22",
         "nombre": "Miguel Ángel Hernández Ruiz",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor22.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor22.jpg",
+        "idEspecialidad": "J"
     },
     {
         "idDoctor": "23",
         "nombre": "Sofía Isabel Martínez Castro",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor23.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor23.jpg",
+        "idEspecialidad": "K"
     },
     {
         "idDoctor": "24",
         "nombre": "Isabel Elena Gómez Ramírez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor24.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor24.jpg",
+        "idEspecialidad": "L"
     },
     {
         "idDoctor": "25",
         "nombre": "Elena Victoria Jiménez Salinas",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor25.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor25.jpg",
+        "idEspecialidad": "A"
     },
     {
         "idDoctor": "26",
         "nombre": "Jorge Alberto Ruiz Campos",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor26.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor26.jpg",
+        "idEspecialidad": "B"
     },
     {
         "idDoctor": "27",
         "nombre": "Carmen Guadalupe Rodríguez Flores",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor27.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor27.jpg",
+        "idEspecialidad": "C"
     },
     {
         "idDoctor": "28",
         "nombre": "Luis Alejandro Vargas Soto",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor28.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor28.jpg",
+        "idEspecialidad": "D"
     },
     {
         "idDoctor": "29",
         "nombre": "Roberto Manuel Morales González",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor29.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor29.jpg",
+        "idEspecialidad": "E"
     },
     {
         "idDoctor": "30",
         "nombre": "Diego Armando Torres Martínez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor30.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor30.jpg",
+        "idEspecialidad": "F"
     },
     {
         "idDoctor": "31",
         "nombre": "Fernando Adrián Castillo Luna",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor31.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor31.jpg",
+        "idEspecialidad": "G"
     },
     {
         "idDoctor": "32",
         "nombre": "Héctor Samuel Mendoza Rojas",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor32.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor32.jpg",
+        "idEspecialidad": "H"
     },
     {
         "idDoctor": "33",
         "nombre": "Pedro Julián Salinas Vera",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor33.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor33.jpg",
+        "idEspecialidad": "I"
     },
     {
         "idDoctor": "34",
         "nombre": "Víctor Alfonso Lozano Chávez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor34.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor34.jpg",
+        "idEspecialidad": "J"
     },
     {
         "idDoctor": "35",
         "nombre": "Paula Andrea Silva Domínguez",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor35.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor35.jpg",
+        "idEspecialidad": "K"
     },
     {
         "idDoctor": "36",
         "nombre": "*",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor36.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor36.jpg",
+        "idEspecialidad": "L"
     },
     {
         "idDoctor": "37",
         "nombre": "*",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor37.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor37.jpg",
+        "idEspecialidad": "A"
     },
     {
         "idDoctor": "38",
         "nombre": "*",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor38.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor38.jpg",
+        "idEspecialidad": "B"
     },
     {
         "idDoctor": "39",
         "nombre": "*",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor39.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor39.jpg",
+        "idEspecialidad": "C"
     },
     {
         "idDoctor": "40",
         "nombre": "*",
-        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor40.jpg"
+        "imagen": "https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Servidor/Imagenes/Doctores/doctor40.jpg",
+        "idEspecialidad": "D"
     }
 ]

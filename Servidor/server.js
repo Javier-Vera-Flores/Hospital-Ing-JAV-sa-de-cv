@@ -159,22 +159,56 @@ app.post("/login", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { username, password } = req.body;
-
+  const { username, name, password } = req.body;
+  var minusculas=false;
+  var mayusculas=false;
+  var numeros=false;
+  var caracteres=false;
+  var longitud=false;
+  var espacios=false;
   // Función para validar la contraseña
   const isValidPassword = (password) => {
     // Define aquí los criterios de la contraseña
     // Una contraseña valida es de al menos 8 caracteres, incluye letras y números
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(password);
+    var i=0;
+    while(i<password.length){
+      if(password.charAt(i)==" "){
+        espacios=true;
+      }
+      if(password.charAt(i).match(/[a-z]/)){
+        minusculas=true;
+      }
+      if(password.charAt(i).match(/[A-Z]/)){
+        mayusculas=true;
+      }
+      if(password.charAt(i).match(/\d/)){
+        numeros=true;
+      }
+      if(password.charAt(i).match(/[!@#$%^&*(),.?":{}|<>]/)){
+        caracteres=true;
+      }
+      i++;
+    }
+    if(password.length>=8){
+      longitud=true;
+    }
+    if(minusculas==true && mayusculas==true && numeros==true && caracteres==true && longitud==true && espacios==false){
+      return true;
+    }
+    return false;
   };
 
-  // Validar si la contraseña cumple con los criterios
+  // Función para validar la contraseña
   if (!isValidPassword(password)) {
     return res.json({
       success: false,
-      message:
-        "La contraseña no cumple con los requisitos (mínimo 8 caracteres, debe incluir letras y números)",
+      message: "<strong>Los requisitos de la contraseña son:</strong><br>" +
+        `${cumple(minusculas)} Al menos una letra minúscula (a-z)<br>` +
+        `${cumple(mayusculas)} Al menos una letra mayúscula (A-Z)<br>` +
+        `${cumple(numeros)} Al menos un número (0-9)<br>` +
+        `${cumple(caracteres)} Al menos un carácter especial (!@#$%^&*(),.?":{}|<>)<br>` +
+        `${cumple(longitud)} Longitud mínima de 8 caracteres<br>` +
+        `${cumple(!espacios)} Sin espacios en blanco<br>`
     });
   }
 
@@ -196,7 +230,7 @@ app.post("/register", (req, res) => {
         return res.json({ success: false, message: "El usuario ya existe" });
       }
 
-      users.push({ username, password });
+      users.push({ username, name, password });
 
       fs.writeFile(
         path.join(__dirname, "./jsonComunicacion/users.json"),
@@ -215,6 +249,10 @@ app.post("/register", (req, res) => {
   );
 });
 
+function cumple(condicion) {
+  return condicion ? "✅" : "❌";
+}
+
 /******************************
  * FIN - Login
  *****************************/
@@ -224,19 +262,63 @@ app.post("/register", (req, res) => {
  *****************************/
 // Ruta para servir el archivo de doctores
 app.get("/doctores", (req, res) => {
-  const filePath = path.join(__dirname, "./jsonComunicacion/doctores.json");
-  fs.readFile(filePath, "utf8", (err, data) => {
+  const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
+  const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
+
+  // Leer ambos archivos
+  fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
     if (err) {
       return res
         .status(500)
         .json({ error: "Error al leer el archivo de doctores" });
     }
-    res.json(JSON.parse(data));
+
+    fs.readFile(especialidadesPath, "utf8", (err, especialidadesData) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Error al leer el archivo de especialidades" });
+      }
+
+      try {
+        // Parsear los datos de los archivos
+        const doctores = JSON.parse(doctoresData);
+        const especialidades = JSON.parse(especialidadesData);
+
+        // Crear un diccionario para acceder a las especialidades
+        const especialidadesDict = {};
+        especialidades.forEach((e) => {
+          especialidadesDict[e.idEspecialidad] = e.nombre;
+        });
+
+        // Combinar la información de doctores con especialidades
+        const doctoresConEspecialidad = doctores.map((doctor) => ({
+          ...doctor,
+          especialidad: especialidadesDict[doctor.idEspecialidad] || "Especialidad no encontrada",
+        }));
+
+        // Ordenar por especialidad (alfabéticamente)
+        doctoresConEspecialidad.sort((a, b) => {
+          if (a.especialidad < b.especialidad) return -1;
+          if (a.especialidad > b.especialidad) return 1;
+          return 0;
+        });
+
+        // Responder con el resultado combinado y ordenado
+        res.json(doctoresConEspecialidad);
+      } catch (parseError) {
+        res
+          .status(500)
+          .json({ error: "Error al procesar los datos JSON" });
+      }
+    });
   });
 });
+
 /******************************
  * FIN - Nuestro equipo médico
  *****************************/
+
 //#######################################################################################
 /******************************
  * INICIO - Servidor

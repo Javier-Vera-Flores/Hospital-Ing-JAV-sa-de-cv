@@ -174,6 +174,14 @@ footer {
   padding: 20px 0;
 }
 
+/* Footer Styles */
+footer {
+  background-color: #004d40; /* Dark green */
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
 .footer-container {
   width: 90%;
   margin: 0 auto;
@@ -201,10 +209,6 @@ footer {
 
 .icons a:hover {
   color: #a5d6a7; /* Light green */
-}
-.footer-container {
-  flex-direction: column;
-  text-align: center;
 }
 /* Responsive Design */
 @media (max-width: 768px) {
