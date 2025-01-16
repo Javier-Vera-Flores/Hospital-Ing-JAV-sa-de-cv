@@ -16,7 +16,6 @@
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
-    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.16",
     "path": "^0.12.7",
     "soap": "^1.1.7"

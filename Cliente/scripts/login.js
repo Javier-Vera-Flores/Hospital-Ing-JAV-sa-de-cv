@@ -19,14 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
   registerForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const newUsername = document.getElementById("newUsername").value;
+    const newName = document.getElementById("newName").value;
     const newPassword = document.getElementById("newPassword").value;
 
-    if (!newUsername || !newPassword) {
+    if (!newUsername || !newName || !newPassword) {
       alert("Por favor, completa todos los campos.");
       return;
     }
 
-    await agregarUsuario(newUsername, newPassword);
+    await agregarUsuario(newUsername, newName, newPassword);
   });
 });
 
@@ -49,9 +50,7 @@ async function iniciarSesion(username, password) {
       messageElement.textContent = "Inicio de sesión exitoso";
       messageElement.style.color = "green";
       localStorage.setItem("loggedInUser", username);
-      //window.location.href = "../index.html";
-      //Si existe una pagina anterior o diferente de inicio, redirigimos a ella,
-      //de otra forma redirigir a index
+      localStorage.setItem("loggedInUserName", result.name);
       const paginaPrevia = localStorage.getItem('previousPage');
       if(paginaPrevia){
         window.location.href = paginaPrevia;
@@ -69,12 +68,12 @@ async function iniciarSesion(username, password) {
   }
 }
 
-async function agregarUsuario(newUsername, newPassword) {
+async function agregarUsuario(newUsername, newName, newPassword) {
   try {
     const response = await fetch(`${SERVER_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: newUsername, password: newPassword }),
+      body: JSON.stringify({ username: newUsername, name: newName, password: newPassword }),
     });
 
     if (!response.ok) {
@@ -88,7 +87,7 @@ async function agregarUsuario(newUsername, newPassword) {
       messageElement.textContent = "Usuario registrado exitosamente";
       messageElement.style.color = "green";
     } else {
-      messageElement.textContent = `Error al registrar usuario: ${result.message}`;
+      messageElement.innerHTML = result.message;
       messageElement.style.color = "red";
     }
   } catch (error) {
