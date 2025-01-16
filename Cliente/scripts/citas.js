@@ -57,7 +57,7 @@ function mostrarListadoCitas() {
     
     `;
   formBusqueda.appendChild(botonesAcciones);
-  // Ejemplo de citas obtenidas (pueden venir de un backend)
+
   const botonNuevaCita = document.querySelector("#nuevaCita");
   botonNuevaCita.addEventListener("click", () => {
     //alert("Agregando nueva cita");
@@ -133,7 +133,7 @@ function mostrarListadoCitas() {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Generar cita</button>
+          <button type="button" class="btn btn-primary" id="generar-cita">Generar cita</button>
         </div>
       </div>
     </div>
@@ -141,6 +141,63 @@ function mostrarListadoCitas() {
 
     // Agregar modal al cuerpo del documento
     document.body.appendChild(modalContainer);
+    //colocamos evento para generar cita
+    const botonGenerarCita = document.querySelector("#generar-cita");
+    botonGenerarCita.addEventListener("click", () => {
+      //alert("La cita se genero correctamente");
+      //Recuperaremos la informacion del formulario en un objeto cita
+      // Recuperar los valores del formulario
+      const nombre = document.querySelector("#nombre").value;
+      const edad = document.querySelector("#edad").value;
+      const fechaCita = document.querySelector("#fechaCita").value;
+      const horaCita = document.querySelector("#horaCita").value;
+      const idEspecialidad = document.querySelector("#idEspecialidad").value;
+      const descripcion = document.querySelector("#descripcion").value;
+      const nombreDoctor = document.querySelector("#nombreDoctor").value;
+      const citaNueva = {
+        id: String(Date.now() % 100),
+        paciente: nombre,
+        edad: edad,
+        username: "user",
+        fecha: fechaCita,
+        hora: horaCita,
+        idEspecialidad: idEspecialidad,
+        consultorio: "01",
+        idDoctor: "7",
+        descripcion: descripcion,
+        nombreDoctor: nombreDoctor,
+        imagenDoctor:
+          "https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/main/Final/Servidor/Imagenes/Doctores/doctor7.jpg",
+      };
+      // Mostrar la cita generada (solo para depuración)
+      console.log(citaNueva);
+      // Realizar la llamada POST con fetch
+      fetch(`${SERVER_URL}/citasMedicas`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(citaNueva), // Convertir el objeto a JSON
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error al agregar la cita");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Cita agregada con éxito:", data);
+          alert("¡La cita se generó correctamente!");
+          bootstrapModal.hide();
+        })
+        .catch((error) => {
+          console.error("Hubo un problema al generar la cita:", error);
+          alert("Ocurrió un error al generar la cita, inténtalo de nuevo.");
+        });
+
+      // Eliminar el atributo aria-hidden cuando el modal esté abierto
+      modalContainer.removeAttribute("aria-hidden");
+    });
 
     // Inicializar y mostrar el modal
     const bootstrapModal = new bootstrap.Modal(modalContainer);
@@ -156,21 +213,6 @@ function mostrarListadoCitas() {
   document.addEventListener("DOMContentLoaded", () => {
     loadCitas();
   });
-
-  // const citas = [
-  //     { id: 1, fecha: '2025-01-05', hora: '10:00 AM', doctor: 'Dr. Pérez' },
-  //     { id: 2, fecha: '2025-01-10', hora: '02:00 PM', doctor: 'Dra. López' }
-  // ];
-
-  // // Generar el listado dinámicamente
-  // listaBusqueda.innerHTML = '<h2>Mis Citas</h2>';
-  // const ul = document.createElement('ul');
-  // citas.forEach(cita => {
-  //     const li = document.createElement('li');
-  //     li.textContent = `ID: ${cita.id} - Fecha: ${cita.fecha} - Hora: ${cita.hora} - Doctor: ${cita.doctor}`;
-  //     ul.appendChild(li);
-  // });
-  // listaBusqueda.appendChild(ul);
 }
 // Función para mostrar el spinner de carga
 function mostrarSpinner() {

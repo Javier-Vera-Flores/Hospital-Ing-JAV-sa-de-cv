@@ -56,7 +56,53 @@ app.get("/citasMedicas", (req, res) => {
     res.json(JSON.parse(data));
   });
 });
+// Ruta para crear una nueva cita médica (POST)
+app.post("/citasMedicas", (req, res) => {
+  const nuevaCita = req.body;
 
+  // Validamos que los campos necesarios estén presentes
+  if (
+    !nuevaCita.paciente ||
+    !nuevaCita.fecha ||
+    !nuevaCita.hora ||
+    !nuevaCita.idEspecialidad
+  ) {
+    return res.status(400).json({ error: "Todos los campos son obligatorios" });
+  }
+
+  const filePath = path.join(__dirname, "./jsonComunicacion/citas.json");
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Error al leer el archivo de citas" });
+    }
+
+    const citas = JSON.parse(data);
+
+    // Generar un ID único para la nueva cita (puedes usar cualquier método)
+    const nuevaCitaConId = {
+      ...nuevaCita,
+      id: String(Date.now()), // Genera un ID único basado en la fecha actual
+    };
+
+    // Agregamos la nueva cita al arreglo
+    citas.push(nuevaCitaConId);
+
+    // Guardamos los cambios en el archivo
+    fs.writeFile(filePath, JSON.stringify(citas, null, 2), (err) => {
+      if (err) {
+        return res
+          .status(500)
+          .json({ error: "Error al guardar la nueva cita" });
+      }
+      res
+        .status(201)
+        .json({ message: "Cita médica creada", cita: nuevaCitaConId });
+    });
+  });
+});
 // Ruta para actualizar una cita médica (PUT)
 app.put("/citasMedicas/:id", (req, res) => {
   const citaId = req.params.id;
