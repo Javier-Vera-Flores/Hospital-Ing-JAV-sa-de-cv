@@ -1,3 +1,5 @@
+localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
+
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
     
@@ -35,18 +37,6 @@ function enviarCorreo(nombre, correo, mensaje) {
     });
 }
 
-function iniciarMap(){
-    var coord = {lat:-34.5956145 ,lng: -58.4431949};
-    var map = new google.maps.Map(document.getElementById('map'),{
-      zoom: 10,
-      center: coord
-    });
-    var marker = new google.maps.Marker({
-      position: coord,
-      map: map
-    });
-}
-
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener('DOMContentLoaded', () => {
     const userGreeting = document.getElementById('userGreeting');
@@ -60,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
             alert('Has cerrado sesión exitosamente.');
-            window.location.href = 'inicio.html'; // Redirigir al login
+            window.location.href = 'contactanos.html'; // Redirigir al login
         });
     } else {
         userGreeting.textContent = 'Bienvenido, invitado!';

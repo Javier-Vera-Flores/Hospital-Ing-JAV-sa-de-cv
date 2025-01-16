@@ -1,71 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login y Registro</title>
-    <link rel="stylesheet" href="../estilos/login.css" />
-  </head>
 
-  <body>
-    <div class="login-container">
-      <div class="toggle-buttons">
-        <button id="showLogin">Iniciar Sesión</button>
-        <button id="showRegister">Registrar</button>
-      </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/icono.jpg">
+    <link rel="stylesheet" href="../estilos/login.css">
+    <title>Inicio de Sesión</title>
+</head>
 
-      <div id="loginSection" class="form-section">
-        <h1>Iniciar Sesión</h1>
-        <form id="loginForm">
-          <label for="username">Usuario:</label>
-          <input type="text" id="username" name="username" required />
-          <label for="password">Contraseña:</label>
-          <input type="password" id="password" name="password" required />
-          <button
-            type="submit"
-            onclick="event.preventDefault(); iniciarSesion(document.getElementById('username').value, document.getElementById('password').value)"
-          >
-            Iniciar Sesión
-          </button>
-        </form>
-        <p id="loginMessage"></p>
-      </div>
+<body>
 
-      <div id="registerSection" class="form-section hidden">
-        <h1>Registrar Nuevo Usuario</h1>
-        <form id="registerForm">
-          <label for="newUsername">Usuario:</label>
-          <input type="text" id="newUsername" name="newUsername" required />
-          <label for="newPassword">Contraseña:</label>
-          <input type="password" id="newPassword" name="newPassword" required />
-          <button
-            type="submit"
-            onclick="event.preventDefault(); agregarUsuario(document.getElementById('newUsername').value, document.getElementById('newPassword').value)"
-          >
-            Registrar
-          </button>
-        </form>
-        <p id="registerMessage"></p>
-      </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form id="registerForm">
+                <h1>Crear Cuenta</h1>
+                <span>Introduce un nombre de usuario</span>
+                <input type="text" id="newUsername" placeholder="Nombre de usuario" required>
+                <input type="password" id="newPassword" placeholder="Contraseña" required>
+                <button type="submit">Registrar</button>
+                <p id="registerMessage"></p> <!-- Para mensajes de registro -->
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="loginForm">
+                <h1>Iniciar Sesión</h1>
+                <span>Introduce tus credenciales</span>
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Entrar</button>
+                <p id="loginMessage"></p> <!-- Para mensajes de inicio de sesión -->
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>¡Bienvenido de nuevo!</h1>
+                    <p>Introduce tus datos personales para disfrutar de todas las funciones del sitio</p>
+                    <button class="hidden" id="login">Iniciar Sesión</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>¡Hola, Amigo!</h1>
+                    <p>Regístrate con tus datos personales para usar todas las funciones del sitio</p>
+                    <button class="hidden" id="register">Crear Cuenta</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!--Se utiliza para guardar el nombre de las variables-->
-    <script>
-      const loginSection = document.getElementById("loginSection");
-      const registerSection = document.getElementById("registerSection");
-      const showLogin = document.getElementById("showLogin");
-      const showRegister = document.getElementById("showRegister");
-
-      showLogin.addEventListener("click", () => {
-        loginSection.classList.remove("hidden");
-        registerSection.classList.add("hidden");
-      });
-
-      showRegister.addEventListener("click", () => {
-        registerSection.classList.remove("hidden");
-        loginSection.classList.add("hidden");
-      });
-    </script>
     <script src="../scripts/login.js"></script>
-  </body>
+</body>
+
 </html>

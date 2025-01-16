@@ -1,3 +1,6 @@
+const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
+localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
+
 // Función para obtener y mostrar doctores en el HTML
 function loadDoctors(containerSelector) {
     // Seleccionamos el contenedor donde se mostrarán los doctores
@@ -10,7 +13,8 @@ function loadDoctors(containerSelector) {
     }
 
     // Llamada al servidor para obtener los doctores
-    fetch('/doctores')
+    //${SERVER_URL}
+    fetch(`${SERVER_URL}/doctores`)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Error al obtener los doctores");
@@ -60,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
             alert('Has cerrado sesión exitosamente.');
-            window.location.href = 'inicio.html'; // Redirigir al login
+            window.location.href = 'doctores.html'; // Redirigir al login
         });
     } else {
         userGreeting.textContent = 'Bienvenido, invitado!';

@@ -1,0 +1,47 @@
+[
+    {   "id": "hm01",
+        "username": "AnaM", 
+        
+        "paciente": "Ana María Torres",
+        "fechaNaciemiento": "03/01/1993",
+        "edad": 32,
+        "sexo": "Femenino",
+        "lugarOrigen": "Guaymas, Sonora",
+        "nacionalidad": "Mexicana",
+        "religion": "NA",
+        "estadoCivil": "Unión Libre",
+        "lugarResidencia": "CDMX",
+        "escolaridad": "Maestría",
+        "seguroMedico": "Sanidad Militar",
+        "ocupacion": "Operadora de Maquinaria",
+        "personaResponsable": "Juan Hernández",
+        "prVinculoconPaciente": "Esposo",
+
+        "anteHeredoFamiliares": "Abuelo Paterno padece de hipertensión. Madre con Diabetes controlada",
+        "antePersonalesNP": "Realiza examenes médicos periódicamente. Mantiene una higiene dental adecuada. Entrena softball 4 veces a la semana. No fuma. Toma socialmente. Dieta balanceada con alimentos de origen animal y vegetal",
+        "antePersonalesP": "Retiro de anginas a los 12 años. Doble extracción de terceros molares. Factura en el radio a los 19 años por accidente en bicicleta. Sin alergías",
+        "anteGineObtetrico": "Menarca a los 11 años. Periodo regular de 28 días con flujo abundante. Primer y único parto a los 29 años. Un hijo. Método anticonceptivo DIU."
+    }, 
+    {   "id": "hm02",
+        "username": "user", 
+        "paciente": "Javier Torres Gómez",
+        "fechaNaciemiento": "23/10/1998",
+        "edad": 26,
+        "sexo": "Masculino",
+        "lugarOrigen": "CDMX",
+        "nacionalidad": "Mexicana",
+        "religion": "Católico",
+        "estadoCivil": "soltero",
+        "lugarResidencia": "CDMX",
+        "escolaridad": "Licenciatura",
+        "seguroMedico": "IMSS",
+        "ocupacion": "Funcionario",
+        "personaResponsable": "Luisa Torres Gómez",
+        "prVinculoconPaciente": "hermana",
+
+        "anteHeredoFamiliares": "Abuelo Materno, Hipotiroidísmo. Hermano, Déficit de Atención.",
+        "antePersonalesNP": "Mantiene una higiene dental adecuada. Corre 2 veces a la semana. No fuma. Toma. Dieta balanceada con alimentos de origen vegetal",
+        "antePersonalesP": "Extracción de tercer molar a los 20 años. Alergía a las nueces.",
+        "anteGineObtetrico": "NA"
+    }
+]
