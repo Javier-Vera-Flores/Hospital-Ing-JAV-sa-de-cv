@@ -25,7 +25,7 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: ["http://127.0.0.1:3000", "http://127.0.0.1:58065"], // Cambia esto al origen donde está tu cliente
+    origin: ["http://127.0.0.1:3000", "http://127.0.0.1:58698"], // Cambia esto al origen donde está tu cliente
     //origin: '*',//lo quitamos al final jejeje
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
@@ -160,39 +160,46 @@ app.post("/login", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { username, name, password } = req.body;
-  var minusculas=false;
-  var mayusculas=false;
-  var numeros=false;
-  var caracteres=false;
-  var longitud=false;
-  var espacios=false;
+  var minusculas = false;
+  var mayusculas = false;
+  var numeros = false;
+  var caracteres = false;
+  var longitud = false;
+  var espacios = false;
   // Función para validar la contraseña
   const isValidPassword = (password) => {
     // Define aquí los criterios de la contraseña
     // Una contraseña valida es de al menos 8 caracteres, incluye letras y números
-    var i=0;
-    while(i<password.length){
-      if(password.charAt(i)==" "){
-        espacios=true;
+    var i = 0;
+    while (i < password.length) {
+      if (password.charAt(i) == " ") {
+        espacios = true;
       }
-      if(password.charAt(i).match(/[a-z]/)){
-        minusculas=true;
+      if (password.charAt(i).match(/[a-z]/)) {
+        minusculas = true;
       }
-      if(password.charAt(i).match(/[A-Z]/)){
-        mayusculas=true;
+      if (password.charAt(i).match(/[A-Z]/)) {
+        mayusculas = true;
       }
-      if(password.charAt(i).match(/\d/)){
-        numeros=true;
+      if (password.charAt(i).match(/\d/)) {
+        numeros = true;
       }
-      if(password.charAt(i).match(/[!@#$%^&*(),.?":{}|<>]/)){
-        caracteres=true;
+      if (password.charAt(i).match(/[!@#$%^&*(),.?":{}|<>]/)) {
+        caracteres = true;
       }
       i++;
     }
-    if(password.length>=8){
-      longitud=true;
+    if (password.length >= 8) {
+      longitud = true;
     }
-    if(minusculas==true && mayusculas==true && numeros==true && caracteres==true && longitud==true && espacios==false){
+    if (
+      minusculas == true &&
+      mayusculas == true &&
+      numeros == true &&
+      caracteres == true &&
+      longitud == true &&
+      espacios == false
+    ) {
       return true;
     }
     return false;
@@ -202,13 +209,16 @@ app.post("/register", (req, res) => {
   if (!isValidPassword(password)) {
     return res.json({
       success: false,
-      message: "<strong>Los requisitos de la contraseña son:</strong><br>" +
+      message:
+        "<strong>Los requisitos de la contraseña son:</strong><br>" +
         `${cumple(minusculas)} Al menos una letra minúscula (a-z)<br>` +
         `${cumple(mayusculas)} Al menos una letra mayúscula (A-Z)<br>` +
         `${cumple(numeros)} Al menos un número (0-9)<br>` +
-        `${cumple(caracteres)} Al menos un carácter especial (!@#$%^&*(),.?":{}|<>)<br>` +
+        `${cumple(
+          caracteres
+        )} Al menos un carácter especial (!@#$%^&*(),.?":{}|<>)<br>` +
         `${cumple(longitud)} Longitud mínima de 8 caracteres<br>` +
-        `${cumple(!espacios)} Sin espacios en blanco<br>`
+        `${cumple(!espacios)} Sin espacios en blanco<br>`,
     });
   }
 
@@ -263,7 +273,10 @@ function cumple(condicion) {
 // Ruta para servir el archivo de doctores
 app.get("/doctores", (req, res) => {
   const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
-  const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
+  const especialidadesPath = path.join(
+    __dirname,
+    "./jsonComunicacion/especialidades.json"
+  );
 
   // Leer ambos archivos
   fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
@@ -294,7 +307,9 @@ app.get("/doctores", (req, res) => {
         // Combinar la información de doctores con especialidades
         const doctoresConEspecialidad = doctores.map((doctor) => ({
           ...doctor,
-          especialidad: especialidadesDict[doctor.idEspecialidad] || "Especialidad no encontrada",
+          especialidad:
+            especialidadesDict[doctor.idEspecialidad] ||
+            "Especialidad no encontrada",
         }));
 
         // Ordenar por especialidad (alfabéticamente)
@@ -307,9 +322,7 @@ app.get("/doctores", (req, res) => {
         // Responder con el resultado combinado y ordenado
         res.json(doctoresConEspecialidad);
       } catch (parseError) {
-        res
-          .status(500)
-          .json({ error: "Error al procesar los datos JSON" });
+        res.status(500).json({ error: "Error al procesar los datos JSON" });
       }
     });
   });

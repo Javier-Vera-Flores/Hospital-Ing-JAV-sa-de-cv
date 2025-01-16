@@ -80,22 +80,22 @@ function mostrarListadoCitas() {
                     <form action="#" method="post" class="form-cita">
                         <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value="Juan Medina Ocampo" class="form-control" required>
+                        <input type="text" id="nombre" name="nombre" value="" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                         <label for="edad" class="form-label">Edad:</label>
-                        <input type="number" id="edad" name="edad" value="18" class="form-control" required>
+                        <input type="number" id="edad" name="edad" value="" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                         <label for="fechaCita" class="form-label">Fecha de Cita:</label>
-                        <input type="date" id="fechaCita" name="fechaCita" value="2024-12-19" class="form-control" required>
+                        <input type="date" id="fechaCita" name="fechaCita" value="" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
                         <label for="horaCita" class="form-label">Hora de Cita:</label>
-                        <input type="time" id="horaCita" name="horaCita" value="08:00" class="form-control" required>
+                        <input type="time" id="horaCita" name="horaCita" value="" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
@@ -103,15 +103,19 @@ function mostrarListadoCitas() {
                         <select id="idEspecialidad" name="idEspecialidad" class="form-select" required>
                             <option value="Cardiología" selected>Cardiología</option>
                             <option value="Neurología">Neurología</option>
+                            <option value="Dermatología">Dermatología</option>
                             <option value="Pediatría">Pediatría</option>
                             <option value="Ginecología">Ginecología</option>
-                            <option value="Dermatología">Dermatología</option>
+                            <option value="Traumatología">Traumatología</option>
+                            <option value="Oftalmología">Oftalmología</option>
+                            <option value="Endocrinología">Endocrinología</option>
+                            
                         </select>
                         </div>
 
                         <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" class="form-control" required>Paciente solicita cita con especialista ya que indicó presentar dolor en el pecho y al valorar sus análisis se determinó necesario.</textarea>
+                        <textarea id="descripcion" name="descripcion" class="form-control" required>Paciente solicita cita con especialista ya que indicó presentar dolor y síntomas de ... al valorar sus análisis se determinó necesario.</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -475,11 +479,11 @@ async function loadCitas() {
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>¿Esta seguro de querer eliminar la cita?.</p>
+          <p>¿Esta seguro de querer eliminar la cita ${cita.id} del paciente ${cita.paciente}?.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Eliminar cita</button>
+          <button type="button" class="btn btn-primary" id="comfimarcion-eliminar">Eliminar cita</button>
         </div>
       </div>
     </div>
@@ -491,6 +495,32 @@ async function loadCitas() {
         // Inicializar y mostrar el modal
         const bootstrapModal = new bootstrap.Modal(modalContainer);
         bootstrapModal.show();
+        const botonComfirmEliminar = document.querySelector(
+          "#comfimarcion-eliminar"
+        );
+        botonComfirmEliminar.addEventListener("click", () => {
+          //alert(`Se eliminó la cita con id ${cita.id} del paciente ${cita.paciente}`);
+          // Llamar al servidor para eliminar la cita
+          fetch(`${SERVER_URL}/citasMedicas/${cita.id}`, {
+            method: "DELETE", // método HTTP DELETE
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Error al eliminar la cita.");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log(data.message); // Mostrar mensaje del servidor en consola
+              bootstrapModal.hide(); // Cerrar el modal
+            })
+            .catch((error) => {
+              console.error("Hubo un problema con la eliminación:", error);
+              alert("No se pudo eliminar la cita. Inténtalo de nuevo.");
+            });
+          // Cerrar el modal
+          //bootstrapModal.hide();
+        });
 
         // Eliminar el modal del DOM al cerrarlo
         modalContainer.addEventListener("hidden.bs.modal", function () {
