@@ -56,6 +56,72 @@ app.get("/citasMedicas", (req, res) => {
     res.json(JSON.parse(data));
   });
 });
+
+// Ruta para actualizar una cita médica (PUT)
+app.put("/citasMedicas/:id", (req, res) => {
+  const citaId = req.params.id;
+  const updatedCita = req.body;
+
+  const filePath = path.join(__dirname, "./jsonComunicacion/citas.json");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Error al leer el archivo de citas" });
+    }
+
+    const citas = JSON.parse(data);
+    const citaIndex = citas.findIndex((cita) => cita.id === citaId);
+
+    if (citaIndex === -1) {
+      return res.status(404).json({ error: "Cita no encontrada" });
+    }
+
+    // Actualizamos la cita
+    citas[citaIndex] = { ...citas[citaIndex], ...updatedCita };
+
+    // Guardamos los cambios en el archivo
+    fs.writeFile(filePath, JSON.stringify(citas, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Error al guardar los cambios" });
+      }
+      res.json({ message: "Cita médica actualizada", cita: citas[citaIndex] });
+    });
+  });
+});
+
+// Ruta para eliminar una cita médica (DELETE)
+app.delete("/citasMedicas/:id", (req, res) => {
+  const citaId = req.params.id;
+
+  const filePath = path.join(__dirname, "./jsonComunicacion/citas.json");
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      return res
+        .status(500)
+        .json({ error: "Error al leer el archivo de citas" });
+    }
+
+    const citas = JSON.parse(data);
+    const citaIndex = citas.findIndex((cita) => cita.id === citaId);
+
+    if (citaIndex === -1) {
+      return res.status(404).json({ error: "Cita no encontrada" });
+    }
+
+    // Eliminamos la cita
+    citas.splice(citaIndex, 1);
+
+    // Guardamos los cambios en el archivo
+    fs.writeFile(filePath, JSON.stringify(citas, null, 2), (err) => {
+      if (err) {
+        return res.status(500).json({ error: "Error al guardar los cambios" });
+      }
+      res.json({ message: "Cita médica eliminada" });
+    });
+  });
+});
+
 /******************************
  * FIN - Citas Medicas
  *****************************/
