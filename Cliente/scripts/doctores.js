@@ -1,4 +1,5 @@
-const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
+const HOST = "192.168.100.15"
+const SERVER_URL = `http://${HOST}:3000`; // URL del servidor
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 
 // Función para obtener y mostrar doctores en el HTML

@@ -1,3 +1,4 @@
+const HOST = "192.168.100.15";
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 
 document.getElementById('form').addEventListener('submit', function(event) {

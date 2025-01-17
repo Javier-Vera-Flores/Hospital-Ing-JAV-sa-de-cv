@@ -10,7 +10,7 @@ require("dotenv").config(); // Manejar variables de entorno
 const app = express();
 const cors = require("cors"); // Importar el paquete
 const { error } = require("console");
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "192.168.100.15";
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 /******************************
@@ -25,7 +25,7 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: ["http://127.0.0.1:3000", "http://127.0.0.1:58698"], // Cambia esto al origen donde está tu cliente
+    origin: [`http://${HOST}:${PORT}`, `http://${HOST}:58698`], // Cambia esto al origen donde está tu cliente
     //origin: '*',//lo quitamos al final jejeje
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
@@ -135,7 +135,6 @@ app.put("/citasMedicas/:id", (req, res) => {
     });
   });
 });
-
 // Ruta para eliminar una cita médica (DELETE)
 app.delete("/citasMedicas/:id", (req, res) => {
   const citaId = req.params.id;
@@ -307,7 +306,6 @@ app.post("/register", (req, res) => {
 function cumple(condicion) {
   return condicion ? "✅" : "❌";
 }
-
 /******************************
  * FIN - Login
  *****************************/
@@ -380,7 +378,7 @@ app.get("/doctores", (req, res) => {
 /******************************
  * Inicio - SOAP Requerimiento Historial
  ******************************/
-const SOAP_URL = 'http://127.0.0.1:3000/historial?wsdl';
+const SOAP_URL = `http://${HOST}:${PORT}/historial?wsdl`;
 
 app.get('/buscar', async (req, res) => {
   const { user } = req.query;
@@ -396,7 +394,7 @@ app.get('/buscar', async (req, res) => {
 });
 
 app.listen(4000, () => {
-  console.log('Servidor escuchando en http://127.0.0.1:4000');
+  console.log(`Servidor escuchando en http://${HOST}:4000`);
 })
 
 const service = {
@@ -447,7 +445,7 @@ const service = {
   }
 }
 
-const wsdlPath = path.join(__dirname, 'reqHistorial.wsdl');
+const wsdlPath = path.join(__dirname, './requerimientos/reqHistorial.wsdl');
 const wsdl = fs.readFileSync(wsdlPath, 'utf8');
 /******************************
  * FIN - SOAP Requerimiento Historial

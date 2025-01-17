@@ -1,5 +1,5 @@
-
-const SERVER_URL = "http://127.0.0.1:3000"; // URL del servidor
+const HOST = "192.168.100.15"
+const SERVER_URL = `http://${HOST}:3000`; // URL del servidor
 const SOAP_URL = `${SERVER_URL}/historial?wsdl`;
 
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
@@ -201,7 +201,7 @@ async function loadHistorial(user) {
     await simularRetraso(2000); // 2 segundos
 
     try {
-        const response = await fetch(`http://127.0.0.1:4000/buscar?user=${user}`);
+        const response = await fetch(`http://${HOST}:4000/buscar?user=${user}`);
         const data = await response.json();
 
         console.log(data.result.paciente);
