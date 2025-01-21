@@ -15,6 +15,9 @@ const formHistorial = document.getElementById("div_historial");
 //logica de logeo
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("redireccionSesion").addEventListener("click", () => {
+        window.location.href = "../pages/login.html"; // Redirigir al login
+      });
     const username = localStorage.getItem('loggedInUser');
     if(username){
         loadHistorial(username);
