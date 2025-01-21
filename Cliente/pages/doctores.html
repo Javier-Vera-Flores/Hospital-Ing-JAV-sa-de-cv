@@ -10,33 +10,18 @@
   <title>Doctores</title>
   <!-- Enlace al archivo CSS personalizado para los estilos de esta página -->
   <link rel="stylesheet" href="../estilos/doctores.css" />
+  <link rel="stylesheet" href="../estilos/footer.css" />
   <!-- Favicon que se muestra en la pestaña del navegador -->
   <link rel="icon" type="image/jpeg" href="https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/icono.jpg">
   <!-- Biblioteca externa Font Awesome para el uso de iconos -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
-<body>
+<body data-url="../pages/doctores.html">
   <!-- Encabezado con logo, navegación y usuario -->
   <header>
-    <div class="header-container">
-      <div class="logo">
-        <img src="https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/9153ef5770ea15b43be4d72f90852b55475878f1/Final/Cliente/Imagenes/logo.jpg" alt="Logo" />
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="../pages/consultaCita.html">Consulta tu Cita</a></li>
-          <li><a href="doctores.html">Nuestro equipo médico</a></li>
-          <li><a href="../pages/consultaHistorialMedico.html">Consulta tu Historial Médico</a></li>
-          <li><a href="contactanos.html">Contáctanos</a></li>
-        </ul>
-      </nav>
-      <div class="user-container">
-        <div id="userGreeting">Hola, Usuario</div>
-        <button id="logoutButton">Cerrar Sesión</button>
-      </div>
-    </div>
+    <div id="divHeader" class="header-container"></div>
   </header>
 
   <!-- Contenido principal -->
@@ -46,40 +31,10 @@
   </div>
 
   <footer>
-    <!-- Contenedor principal del pie de página -->
-    <div class="footer-container">
-      <!-- Sección de dirección -->
-      <div class="address">
-        <p>Dirección: Av San Pablo Xalpa 180, San Martin Xochinahuac, Azcapotzalco, 02128 Ciudad de México, CDMX</p>
-      </div>
-      <!-- Información de la empresa -->
-      <div class="company">
-        <p>Ingenieros JAV S.A C.V</p>
-        <!-- Texto sobre el catálogo de precios -->
-        <p><a href="./catalogoAnalisis.html">Consulta nuestro catálogo de precios</a></p>
-      </div>
-      <!-- Enlaces a redes sociales -->
-      <div class="social-media">
-        <p>Síguenos en nuestras redes sociales</p>
-        <div class="icons">
-          <!-- Enlace a la página oficial de Facebook -->
-          <span>
-            <a href="https://www.facebook.com/CBI.UAM.Azcapotzalco/?locale=es_LA" target="_blank">
-              <i class="fab fa-facebook"></i> Facebook
-            </a>
-          </span>
-          <!-- Enlace a la página oficial en X (antes Twitter) -->
-          <span>
-            <a href="https://x.com/UAMAzcOficial" target="_blank">
-              <i class="fab fa-x"></i> X
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
+    <div id="divFooter" class="footer-container"></div>
   </footer>
-
   <!-- Enlace al archivo JavaScript que maneja la lógica de esta página -->
+  <script src="../scripts/inicio.js"></script>
   <script src="../scripts/doctores.js"></script>
 </body>
 

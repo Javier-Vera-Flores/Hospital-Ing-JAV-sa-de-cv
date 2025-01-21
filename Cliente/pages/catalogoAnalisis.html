@@ -8,39 +8,21 @@
         href="https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/icono.jpg">
     <title>Consulta de Catalogo</title>
     <link rel="stylesheet" href="../estilos/catalogoAnalisis.css">
+    <link rel="stylesheet" href="../estilos/footer.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
-<body>
+<body data-url="../pages/catalogoAnalisis.html">
     <header>
-        <div class="header-container">
-          <div class="logo">
-            <img
-              src="https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/9153ef5770ea15b43be4d72f90852b55475878f1/Final/Cliente/Imagenes/logo.jpg"
-              alt="Logo" />
-          </div>
-          <nav>
-            <ul class="nav-links">
-              <li><a href="../index.html">Inicio</a></li>
-              <li><a href="../pages/consultaCita.html">Consulta tu Cita</a></li>
-              <li><a href="doctores.html">Nuestro equipo médico</a></li>
-              <li><a href="../pages/consultaHistorialMedico.html">Consulta tu Historial Médico</a></li>
-              <li><a href="contactanos.html">Contáctanos</a></li>
-            </ul>
-          </nav>
-          <!-- Contenedor de usuario y botón de cierre de sesión -->
-          <div class="user-container">
-            <div id="userGreeting">Hola, Usuario</div>
-            <button id="logoutButton">Cerrar Sesión</button>
-          </div>
-        </div>
-      </header>
+        <div id="divHeader" class="header-container"></div>
+    </header>
     <main>
         <div class="container my-5">
             <h1 class="text-center mb-4">Solicita tus análisis aquí</h1>
-    
+
             <!-- Análisis de sangre -->
             <section class="service-section ">
                 <h2 class="service-title">Análisis de Sangre</h2>
@@ -51,9 +33,11 @@
                     <section class="description-title">
                         <h3>Descripcion</h3>
                         <p>
-                            Realizamos análisis de sangre con alta precisión para obtener resultados confiables que apoyen
+                            Realizamos análisis de sangre con alta precisión para obtener resultados confiables que
+                            apoyen
                             en la
-                            detección temprana de diversas condiciones médicas. Nuestro equipo garantiza un manejo seguro y
+                            detección temprana de diversas condiciones médicas. Nuestro equipo garantiza un manejo
+                            seguro y
                             profesional.
                         </p>
                     </section>
@@ -63,7 +47,7 @@
                     <button class="btn btn-outline-info">Más Información</button>
                 </div>
             </section>
-    
+
             <!-- Radiografías -->
             <section class="service-section">
                 <h2 class="service-title">Radiografías</h2>
@@ -76,7 +60,8 @@
                         <p>
                             Ofrecemos servicios de radiografía con tecnología de última generación para obtener imágenes
                             claras
-                            y detalladas que faciliten un diagnóstico preciso. Ideales para detectar fracturas, infecciones
+                            y detalladas que faciliten un diagnóstico preciso. Ideales para detectar fracturas,
+                            infecciones
                             y
                             más.
                         </p>
@@ -87,7 +72,7 @@
                     <button class="btn btn-outline-info">Más Información</button>
                 </div>
             </section>
-    
+
             <!-- Ultrasonidos -->
             <section class="service-section">
                 <h2 class="service-title">Ultrasonidos</h2>
@@ -98,7 +83,8 @@
                     <section class="description-title">
                         <h3>Descripcion</h3>
                         <p>
-                            Nuestros ultrasonidos se realizan con equipos avanzados que permiten obtener imágenes detalladas
+                            Nuestros ultrasonidos se realizan con equipos avanzados que permiten obtener imágenes
+                            detalladas
                             y
                             no invasivas de tejidos blandos y órganos internos, proporcionando un diagnóstico seguro y
                             eficiente.
@@ -110,7 +96,7 @@
                     <button class="btn btn-outline-info">Más Información</button>
                 </div>
             </section>
-    
+
             <!-- Análisis de Orina -->
             <section class="service-section">
                 <h2 class="service-title">Análisis de Orina</h2>
@@ -121,7 +107,8 @@
                     <section class="description-title">
                         <h3>Descripcion</h3>
                         <p>
-                            Los análisis de orina que ofrecemos permiten detectar infecciones, enfermedades renales y otros
+                            Los análisis de orina que ofrecemos permiten detectar infecciones, enfermedades renales y
+                            otros
                             problemas de salud con rapidez y exactitud. Un procedimiento simple, pero esencial para el
                             cuidado
                             de tu bienestar.
@@ -133,7 +120,7 @@
                     <button class="btn btn-outline-info">Más Información</button>
                 </div>
             </section>
-    
+
             <!-- Consulta Médica -->
             <section class="service-section">
                 <h2 class="service-title">Consulta Médica</h2>
@@ -145,7 +132,8 @@
                         <h3>Descripcion</h3>
                         <p>
                             Agenda una consulta médica con nuestros especialistas para recibir una evaluación integral y
-                            personalizada. Estamos comprometidos con tu salud y bienestar, brindando atención de calidad.
+                            personalizada. Estamos comprometidos con tu salud y bienestar, brindando atención de
+                            calidad.
                         </p>
                     </section>
                 </div>
@@ -156,43 +144,14 @@
             </section>
         </div>
     </main>
-     <!--No modificar-->
-  <footer>
-    <div class="footer-container">
-      <div class="address">
-        <p>
-          Dirección: Av San Pablo Xalpa 180, San Martin Xochinahuac,
-          Azcapotzalco, 02128 Ciudad de México, CDMX
-        </p>
-      </div>
-      <div class="company">
-        <p>Ingenieros JAV S.A C.V</p>
-        <!--Los catalogos como lo definimos?-->
-        <p><a href="catalogoAnalisis.html">Consulta nuestro catálogo de precios</a></p>
-      </div>
-      <div class="social-media">
-        <p>Síguenos en nuestras redes sociales</p>
-        <div class="icons">
-          <span>
-            <a href="https://www.facebook.com/CBI.UAM.Azcapotzalco/?locale=es_LA" target="_blank">
-              <i class="fab fa-facebook"></i> Facebook
-            </a>
-          </span>
-          <span>
-            <a href="https://x.com/UAMAzcOficial" target="_blank">
-              <i class="fab fa-x"></i> X
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!--Fin no modificar-->
+    <footer>
+        <div id="divFooter" class="footer-container"></div>
+    </footer>
+    <!-- Script para añadir footer y header -->
+    <script src="../scripts/inicio.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-
-
 </body>
 
 </html>

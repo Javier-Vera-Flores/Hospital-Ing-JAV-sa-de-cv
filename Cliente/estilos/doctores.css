@@ -170,43 +170,6 @@ nav ul {
   }
 }
 
-/* Footer Styles */
-footer {
-  background-color: #004d40; /* Dark green */
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-}
-
-.footer-container {
-  width: 90%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.address,
-.company,
-.social-media {
-  margin-bottom: 20px;
-  flex: 1 1 30%;
-}
-
-.icons span {
-  margin-right: 10px;
-}
-
-.icons a {
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.icons a:hover {
-  color: #a5d6a7; /* Light green */
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .header-container {
@@ -226,10 +189,4 @@ footer {
     flex-direction: column;
     text-align: center;
   }
-}
-
-footer .company a {
-  color: inherit; /* Usa el color del texto del contenedor padre */
-  text-decoration: none; /* Elimina el subrayado */
-  cursor: default; /* Cambia el cursor al de texto normal */
 }

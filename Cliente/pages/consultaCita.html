@@ -8,36 +8,17 @@
   <link rel="icon" type="image/jpeg"
     href="https://raw.githubusercontent.com/Javier-Vera-Flores/Hospital-Ing-JAV-sa-de-cv/main/Cliente/Imagenes/icono.jpg">
   <link rel="stylesheet" href="../estilos/consultaCita.css" />
+  <link rel="stylesheet" href="../estilos/footer.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <!-- <link rel="stylesheet" href="../estilos/formularioNuevaCita.css"> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
-<body>
+<body data-url="../pages/consultaCita.html">
   <header>
-    <div class="header-container">
-      <div class="logo">
-        <img
-          src="https://raw.githubusercontent.com/2212002118/Ingenieros_JAV/9153ef5770ea15b43be4d72f90852b55475878f1/Final/Cliente/Imagenes/logo.jpg"
-          alt="Logo" />
-      </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="../index.html">Inicio</a></li>
-          <li><a href="../pages/consultaCita.html">Consulta tu Cita</a></li>
-          <li><a href="doctores.html">Nuestro equipo médico</a></li>
-          <li><a href="../pages/consultaHistorialMedico.html">Consulta tu Historial Médico</a></li>
-          <li><a href="contactanos.html">Contáctanos</a></li>
-        </ul>
-      </nav>
-
-      <!-- Contenedor de usuario y botón de cierre de sesión -->
-      <div class="user-container">
-        <div id="userGreeting">Hola, Usuario</div>
-        <button id="logoutButton">Cerrar Sesión</button>
-      </div>
-    </div>
+    <div id="divHeader" class="header-container"></div>
   </header>
 
   <main>
@@ -58,36 +39,11 @@
   </main>
 
   <footer>
-    <div class="footer-container">
-      <div class="address">
-        <p>
-          Dirección: Av San Pablo Xalpa 180, San Martin Xochinahuac,
-          Azcapotzalco, 02128 Ciudad de México, CDMX
-        </p>
-      </div>
-      <div class="company">
-        <p>Ingenieros JAV S.A C.V</p>
-        <!--Los catalogos como lo definimos?-->
-        <p><a href="./catalogoAnalisis.html">Consulta nuestro catálogo de precios</a></p>
-      </div>
-      <div class="social-media">
-        <p>Síguenos en nuestras redes sociales</p>
-        <div class="icons">
-          <span>
-            <a href="https://www.facebook.com/CBI.UAM.Azcapotzalco/?locale=es_LA" target="_blank">
-              <i class="fab fa-facebook"></i> Facebook
-            </a>
-          </span>
-          <span>
-            <a href="https://x.com/UAMAzcOficial" target="_blank">
-              <i class="fab fa-x"></i> X
-            </a>
-          </span>
-        </div>
-      </div>
-    </div>
+    <div id="divFooter" class="footer-container"></div>
   </footer>
 
+  <!-- Script para añadir footer y header -->
+  <script src="../scripts/inicio.js"></script>
   <script src="../scripts/citas.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

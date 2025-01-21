@@ -25,7 +25,7 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: [`http://${HOST}:${PORT}`, `http://${HOST}:58698`], // Cambia esto al origen donde está tu cliente
+    origin: [`http://${HOST}:${PORT}`, `http://${HOST}:58698`, `http://${HOST}:4000`], // Cambia esto al origen donde está tu cliente
     //origin: '*',//lo quitamos al final jejeje
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
@@ -382,7 +382,6 @@ const SOAP_URL = `http://${HOST}:${PORT}/historial?wsdl`;
 
 app.get('/buscar', async (req, res) => {
   const { user } = req.query;
-
   try {
     const client = await soap.createClientAsync(SOAP_URL);
     const result = await client.BuscarAsync({ username: user });
@@ -402,7 +401,7 @@ const service = {
     HistorialPort: {
       Buscar: function (args, callback) {
         const username = args.username;
-        
+
         const filePath = path.join(__dirname, "./jsonComunicacion/historialMedico.json");
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) {

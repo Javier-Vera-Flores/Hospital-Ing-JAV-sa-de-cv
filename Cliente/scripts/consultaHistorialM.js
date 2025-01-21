@@ -10,186 +10,25 @@ const username = localStorage.getItem('loggedInUser');
 const usuarioLogeado = localStorage.getItem('loggedInUser');
 // Selecciona el div donde se gestionará el contenido dinámico
 // const containerCita = document.querySelector('.container-cita');
-const listaBusqueda = document.querySelector('.listado-busqueda');
+const formHistorial = document.getElementById("div_historial");
 
 //logica de logeo
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener('DOMContentLoaded', () => {
-    const userGreeting = document.getElementById('userGreeting');
-    const logoutButton = document.getElementById('logoutButton');
     const username = localStorage.getItem('loggedInUser');
-
-    // Configurar el saludo y el texto del botón de manera dinámica
-    if (username) {
-        userGreeting.textContent = `Bienvenido, ${username}!`;
-        logoutButton.textContent = 'Cerrar Sesión';
-        logoutButton.addEventListener('click', () => {
-            localStorage.removeItem('loggedInUser'); // Eliminar el usuario almacenado
-            alert('Has cerrado sesión exitosamente.');
-            window.location.href = 'consultaHistorialMedico.html'; // Redirigir al login
-        });
-        document.getElementById("div_default").remove();
+    if(username){
         loadHistorial(username);
-    } else {
-        userGreeting.textContent = 'Bienvenido, invitado!';
-        logoutButton.textContent = 'Iniciar Sesión';
-        logoutButton.addEventListener('click', () => {
-            window.location.href = 'login.html'; // Redirigir al login
-        });
-        document.getElementById("redireccionSesion").addEventListener('click', () => {
-            window.location.href = 'login.html'; // Redirigir al login
-        })
-    }
+    } 
 });
 
 // Función para mostrar el spinner de carga
 function mostrarSpinner() {
-    listaBusqueda.innerHTML = `
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <div class="spinner-grow text-success" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>    
-    `;
-
+    document.getElementById("div_default").style.display = "none";
+    document.getElementById("div_carga").style.display = "block";
 }
 // Función para simular un retraso 
 function simularRetraso(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function inicializaForm(){
-    listaBusqueda.innerHTML = ''; //limpiamos contenedor
-    // Crear el contenedor principal
-    listaBusqueda.className = 'container-xxl card';
-    listaBusqueda.innerHTML = `
-        <h1 class="card-header">
-            Historial Médico
-        </h1>
-        <div class="card-body">
-            <h3 class="card-title">Ficha de Identificación</h3>
-            <form>
-                <div class="form-datosPersonales">
-                    <div class="form-group">
-                        <label>Nombre: </label>
-                        <input class="form-control" id="inputNombre" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Edad (Años):</label>
-                        <input class="form-control" id="inputEdad" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Sexo:</label>
-                        <input class="form-control" id="inputSexo" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Estado Civil:</label>
-                        <input class="form-control" id="inputEstadoCivil" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Religión:</label>
-                        <input class="form-control" id="inputReligion" disabled>
-                    </div>
-                </div>
-                <div class="form-estudios">
-                    <div class="form-group">
-                        <label>Escolaridad:</label>
-                        <input class="form-control" id="inputEscolaridad" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Ocupación:</label>
-                        <input class="form-control" id="inputOcupacion" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Seguro Médico:</label>
-                        <input class="form-control" id="inputSeguro" disabled>
-                    </div>
-                </div>
-                <div class="form-nacimiento">
-                    <div class="form-group">
-                        <label>Fecha de Nacimiento:</label>
-                        <input class="form-control" id="inputFNacimiento" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Lugar de Nacimiento:</label>
-                        <input class="form-control" id="inputLNacimiento" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Nacionalidad:</label>
-                        <input class="form-control" id="inputNacionalidad" disabled>
-                    </div><div class="form-group">
-                        <label>Dirección:</label>
-                        <input class="form-control" id="inputDireccion" disabled>
-                    </div>
-                </div>
-            </form>
-
-            <h3 class="card-title">Responsable</h3>
-            <form>
-                <div class="form-responsable">
-                    <div class="form-group">
-                        <label>Nombre: </label>
-                        <input class="form-control" id="inputNombreResponsble" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label>Vínculo</label>
-                        <input class="form-control" id="inputVinculo" disabled>
-                    </div>
-                 </div>
-            </form>
-
-            <h3 class="card-title">Antecedentes HeredoFamiliares</h3>
-            <form>
-                <div class="form-row form-historial">
-                    <div class="form-group">
-                        <textarea class="form-control" id="txtHeredo" disabled></textarea>
-                    </div>
-            </form>
-
-            <h3 class="card-title">Antecedentes Personales No Patológicos</h3>
-            <form>
-                <div class="form-row form-historial">
-                    <div class="form-group">
-                        <textarea class="form-control" id="txtPersonalesNP" disabled></textarea>
-                    </div>
-            </form>
-
-            <h3 class="card-title">Antecedentes Personales Patológicos</h3>
-            <form>
-                <div class="form-row form-historial">
-                    <div class="form-group">
-                        <textarea class="form-control" id="txtPersonalesP" disabled></textarea>
-                    </div>
-            </form>
-
-            <h3 class="card-title">Antecedentes GinecoObstétrico</h3>
-            <form>
-                <div class="form-row form-historial">
-                    <div class="form-group">
-                        <textarea class="form-control" id="txtGineco" disabled></textarea>
-                    </div>
-            </form>
-        </div>
-    `
 }
 
 /* Interacción Servicios SOAP */
@@ -203,9 +42,12 @@ async function loadHistorial(user) {
     try {
         const response = await fetch(`http://${HOST}:4000/buscar?user=${user}`);
         const data = await response.json();
+    
+        /*Muestra formulario*/
+        document.getElementById("div_carga").style.display = "none";
+        formHistorial.style.display = "flex";
 
         console.log(data.result.paciente);
-        inicializaForm();
 
         document.getElementById("inputNombre").value = data.result.paciente;
         document.getElementById("inputEdad").value = data.result.edad;
