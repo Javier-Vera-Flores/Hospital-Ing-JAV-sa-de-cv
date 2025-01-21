@@ -43,7 +43,7 @@ async function loadHistorial(user) {
     await simularRetraso(2000); // 2 segundos
 
     try {
-        const response = await fetch(`http://${HOST}:4000/buscar?user=${user}`);
+        const response = await fetch(`http://${HOST}:4000/buscarHistorial?user=${user}`);
         const data = await response.json();
     
         /*Muestra formulario*/

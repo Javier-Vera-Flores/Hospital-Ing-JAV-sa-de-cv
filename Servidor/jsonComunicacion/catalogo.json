@@ -1,0 +1,37 @@
+[
+    {
+        "id": "cat01",
+        "nombre": "Análisis de Sangre",
+        "precio": 500,
+        "img": "../Imagenes/imagenes_catalogo/analisis_sangre_400x222.png",
+        "descripcion": "Realizamos análisis de sangre con alta precisión para obtener resultados confiables que apoyen en la detección temprana de diversas condiciones médicas. Nuestro equipo garantiza un manejo seguro y profesional."
+    },
+    {
+        "id": "cat02",
+        "nombre": "Radiografías",
+        "precio": 800,
+        "img": "../Imagenes/imagenes_catalogo/analisis_radiografia_400x229.png",
+        "descripcion": "Ofrecemos servicios de radiografía con tecnología de última generación para obtener imágenes claras y detalladas que faciliten un diagnóstico preciso. Ideales para detectar fracturas, infecciones y más."
+    },
+    {
+        "id": "cat03",
+        "nombre": "Ultrasonidos",
+        "precio": 1200,
+        "img": "../Imagenes/imagenes_catalogo/analisis_ultrasonidos_400x240.png",
+        "descripcion": "Nuestros ultrasonidos se realizan con equipos avanzados que permiten obtener imágenes detalladas y no invasivas de tejidos blandos y órganos internos, proporcionando un diagnóstico seguro y eficiente."
+    },
+    {
+        "id": "cat04",
+        "nombre": "Análisis de Orina",
+        "precio": 300,
+        "img": "../Imagenes/imagenes_catalogo/analisis_origna_400x300.png",
+        "descripcion": "Los análisis de orina que ofrecemos permiten detectar infecciones, enfermedades renales y otros problemas de salud con rapidez y exactitud. Un procedimiento simple, pero esencial para el cuidado de tu bienestar."
+    },
+    {
+        "id": "cat05",
+        "nombre": "Consula Médica",
+        "precio": 600,
+        "img": "../Imagenes/imagenes_catalogo/consulta_medica_400x246.png",
+        "descripcion": "Agenda una consulta médica con nuestros especialistas para recibir una evaluación integral y personalizada. Estamos comprometidos con tu salud y bienestar, brindando atención de calidad."
+    }
+]

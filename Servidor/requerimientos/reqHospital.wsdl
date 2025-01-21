@@ -1,0 +1,122 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+
+            xmlns:tns="http://192.168.100.15:3000/hospital"                                
+            
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            
+            targetNamespace="http://192.168.100.15:3000/hospital">
+
+    <types>
+            <xsd:schema targetNamespace="http://192.168.100.15:3000/hospital">
+            
+            <xsd:element name="BuscarHistorial">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="BuscarHistorialResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="paciente" type="xsd:string"/>
+                        <xsd:element name="fechaNaciemiento" type="xsd:string"/>
+                        <xsd:element name="edad" type="xsd:string"/>
+                        <xsd:element name="sexo" type="xsd:string"/>
+                        <xsd:element name="lugarOrigen" type="xsd:string"/>
+                        <xsd:element name="nacionalidad" type="xsd:string"/>
+                        <xsd:element name="religion" type="xsd:string"/>
+                        <xsd:element name="estadoCivil" type="xsd:string"/>
+                        <xsd:element name="lugarResidencia" type="xsd:string"/>
+                        <xsd:element name="escolaridad" type="xsd:string"/>
+                        <xsd:element name="seguroMedico" type="xsd:string"/>
+                        <xsd:element name="ocupacion" type="xsd:string"/>
+                        <xsd:element name="personaResponsable" type="xsd:string"/>
+                        <xsd:element name="prVinculoconPaciente" type="xsd:string"/>
+                        <xsd:element name="anteHeredoFamiliares" type="xsd:string"/>
+                        <xsd:element name="antePersonalesNP" type="xsd:string"/>
+                        <xsd:element name="antePersonalesP" type="xsd:string"/>
+                        <xsd:element name="anteGineObtetrico" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="CargarDoctores">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="username" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="CargarDoctoresResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="CargarDoctoresResult" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </types>
+
+    <message name="BuscarHistorialRequest">
+        <part name="parameters" element="tns:BuscarHistorial"/>
+    </message>
+    <message name="BuscarHistorialResponse">
+        <part name="parameters" element="tns:BuscarHistorialResponse"/>
+    </message>
+
+    <message name="CargarDoctoresRequest">
+        <part name="parameters" element="tns:CargarDoctores"/>
+    </message>
+    <message name="CargarDoctoresResponse">
+        <part name="parameters" element="tns:CargarDoctoresResponse"/>
+    </message>
+
+    <portType name="HospitalPortType">
+        <operation name="BuscarHistorial">
+            <input message="tns:BuscarHistorialRequest"/>
+            <output message="tns:BuscarHistorialResponse"/>
+        </operation>
+
+        <operation name="CargarDoctores">
+            <input message="tns:CargarDoctoresRequest"/>
+            <output message="tns:CargarDoctoresResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="HospitalBinding" type="tns:HospitalPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="BuscarHistorial">
+
+            <soap:operation soapAction="http://192.168.100.15:3000/hospital/buscarHistorial"/>
+        
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="CargarDoctores">
+
+            <soap:operation soapAction="http://192.168.100.15:3000/hospital/cargarDoctores"/>
+        
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="HospitalService">
+        <port name="HospitalPort" binding="tns:HospitalBinding">
+
+            <soap:address location="http://192.168.100.15:3000/hospital"/>
+            
+        </port>
+    </service>
+</definitions>

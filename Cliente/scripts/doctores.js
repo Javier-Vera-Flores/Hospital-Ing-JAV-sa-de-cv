@@ -20,6 +20,7 @@ function loadDoctorsBySpecialty(containerSelector) {
             return response.json();
         })
         .then(doctores => {
+            console.log(doctores)
             container.innerHTML = ''; // Limpiamos el contenedor
 
             // Agrupar doctores por especialidad
@@ -65,7 +66,61 @@ function loadDoctorsBySpecialty(containerSelector) {
         });
 }
 
+async function loadDoctorsBySpecialtySOAP(containerSelector, username) {
+    const container = document.querySelector(containerSelector);
+
+    if (!container) {
+        console.error(`Contenedor no encontrado: ${containerSelector}`);
+        return;
+    }
+
+    try{
+        const response = await fetch(`http://${HOST}:4000/cargarDoc?user=${username}`);
+        const data = await response.json();
+        const doctores = JSON.parse(data.result.CargarDoctoresResult);
+
+        // Agrupar doctores por especialidad
+        const groupedBySpecialty = doctores.reduce((groups, doctor) => {
+            const specialty = doctor.especialidad || "Sin especialidad";
+            if (!groups[specialty]) {
+                groups[specialty] = [];
+            }
+            groups[specialty].push(doctor);
+            return groups;
+        }, {});
+
+        // Generar HTML dinámico por especialidad
+        Object.keys(groupedBySpecialty).forEach(specialty => {
+            const specialtySection = document.createElement("section");
+            specialtySection.classList.add("specialty-section");
+
+            specialtySection.innerHTML = `<h2>${specialty}</h2>`;
+
+            // Contenedor horizontal para los doctores
+            const doctorsContainer = document.createElement("div");
+            doctorsContainer.classList.add("doctors-container");
+
+            groupedBySpecialty[specialty].forEach(doctor => {
+                const doctorElement = document.createElement("div");
+                doctorElement.classList.add("doctor");
+
+                doctorElement.innerHTML = `
+                    <img src="${doctor.imagen}" alt="${doctor.nombre}">
+                    <h3>${doctor.nombre}</h3>
+                `;
+
+                doctorsContainer.appendChild(doctorElement);
+            });
+
+            specialtySection.appendChild(doctorsContainer);
+            container.appendChild(specialtySection);
+        });
+    } catch (error){
+        console.error(error);
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    loadDoctorsBySpecialty(".doctores"); // Especifica el selector del contenedor
+    const username = localStorage.getItem('loggedInUser');
+    loadDoctorsBySpecialtySOAP(".doctores", username);
 });

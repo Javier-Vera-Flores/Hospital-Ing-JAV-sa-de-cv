@@ -371,6 +371,19 @@ app.get("/doctores", (req, res) => {
   });
 });
 
+const SOAP_URL = `http://${HOST}:${PORT}`;
+
+app.get('/cargarDoc', async (req, res) => {
+    const { user } = req.query;
+    try {
+      const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
+      const result = await client.CargarDoctoresAsync({ username: user });
+  
+      res.json({ result: result[0] });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
 /******************************
  * FIN - Nuestro equipo médico
  *****************************/
@@ -378,15 +391,14 @@ app.get("/doctores", (req, res) => {
 /******************************
  * Inicio - SOAP Requerimiento Historial
  ******************************/
-const SOAP_URL = `http://${HOST}:${PORT}/historial?wsdl`;
 
-app.get('/buscar', async (req, res) => {
+app.get('/buscarHistorial', async (req, res) => {
   const { user } = req.query;
   try {
-    const client = await soap.createClientAsync(SOAP_URL);
-    const result = await client.BuscarAsync({ username: user });
+    const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
+    const result = await client.BuscarHistorialAsync({ username: user });
 
-    res.json({ result: result[0]});
+    res.json({ result: result[0] });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -397,9 +409,9 @@ app.listen(4000, () => {
 })
 
 const service = {
-  HistorialService: {
-    HistorialPort: {
-      Buscar: function (args, callback) {
+  HospitalService: {
+    HospitalPort: {
+      BuscarHistorial: function (args, callback) {
         const username = args.username;
 
         const filePath = path.join(__dirname, "./jsonComunicacion/historialMedico.json");
@@ -410,41 +422,90 @@ const service = {
           const listado_historial = JSON.parse(data);
 
           listado_historial.forEach(historia => {
-            if(historia.username == username){
-              console.log(historia.id);
-              callback(null, {  id: historia.id,
-                                paciente: historia.paciente,
-                                fechaNaciemiento: historia.fechaNaciemiento,
-                                edad: historia.edad,
-                                sexo: historia.sexo,
-                                lugarOrigen: historia.lugarOrigen,
-                                nacionalidad: historia.nacionalidad,
-                                religion: historia.religion,
-                                estadoCivil: historia.estadoCivil,
-                                lugarResidencia: historia.lugarResidencia,
-                                escolaridad: historia.escolaridad,
-                                seguroMedico: historia.seguroMedico,
-                                ocupacion: historia.ocupacion,
-                                personaResponsable: historia.personaResponsable,
-                                prVinculoconPaciente: historia.prVinculoconPaciente,
-                                anteHeredoFamiliares: historia.anteHeredoFamiliares,
-                                antePersonalesNP: historia.antePersonalesNP,
-                                antePersonalesP: historia.antePersonalesP,
-                                anteGineObtetrico: historia.anteGineObtetrico
-                            });
+            if (historia.username == username) {
+              callback(null, {
+                id: historia.id,
+                paciente: historia.paciente,
+                fechaNaciemiento: historia.fechaNaciemiento,
+                edad: historia.edad,
+                sexo: historia.sexo,
+                lugarOrigen: historia.lugarOrigen,
+                nacionalidad: historia.nacionalidad,
+                religion: historia.religion,
+                estadoCivil: historia.estadoCivil,
+                lugarResidencia: historia.lugarResidencia,
+                escolaridad: historia.escolaridad,
+                seguroMedico: historia.seguroMedico,
+                ocupacion: historia.ocupacion,
+                personaResponsable: historia.personaResponsable,
+                prVinculoconPaciente: historia.prVinculoconPaciente,
+                anteHeredoFamiliares: historia.anteHeredoFamiliares,
+                antePersonalesNP: historia.antePersonalesNP,
+                antePersonalesP: historia.antePersonalesP,
+                anteGineObtetrico: historia.anteGineObtetrico
+              });
             } else {
               userHistoria = "No se encontró Historia clínica"
             }
           });
-          //res.json(JSON.parse(data));
         });
-        
+      },
+      CargarDoctores: function (args, callback) {
+        const username = args.username;
+
+        const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
+        const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
+
+        fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
+          if (err) {
+            return res.status(500).json({ error: "Error al leer el archivo de citas" });
+          }
+
+          fs.readFile(especialidadesPath, "utf8", (err, especialidadesData) => {
+            if (err) {
+              return res.status(500).json({ error: "Error al leer el archivo de citas" });
+            }
+
+            try {
+              // Parsear los datos de los archivos
+              const doctores = JSON.parse(doctoresData);
+              const especialidades = JSON.parse(especialidadesData);
+      
+              // Crear un diccionario para acceder a las especialidades
+              const especialidadesDict = {};
+              especialidades.forEach((e) => {
+                especialidadesDict[e.idEspecialidad] = e.nombre;
+              });
+      
+              // Combinar la información de doctores con especialidades
+              const doctoresConEspecialidad = doctores.map((doctor) => ({
+                ...doctor,
+                especialidad:
+                  especialidadesDict[doctor.idEspecialidad] ||
+                  "Especialidad no encontrada",
+              }));
+      
+              // Ordenar por especialidad (alfabéticamente)
+              doctoresConEspecialidad.sort((a, b) => {
+                if (a.especialidad < b.especialidad) return -1;
+                if (a.especialidad > b.especialidad) return 1;
+                return 0;
+              });
+      
+              // Responder con el resultado combinado y ordenado
+              const result = JSON.stringify(doctoresConEspecialidad);
+              callback(null, {CargarDoctoresResult: result});
+            } catch (parseError) {
+              res.status(500).json({ error: "Error al procesar los datos JSON" });
+            }
+          });
+        });
       }
     }
   }
 }
 
-const wsdlPath = path.join(__dirname, './requerimientos/reqHistorial.wsdl');
+const wsdlPath = path.join(__dirname, './requerimientos/reqHospital.wsdl');
 const wsdl = fs.readFileSync(wsdlPath, 'utf8');
 /******************************
  * FIN - SOAP Requerimiento Historial
@@ -460,10 +521,10 @@ app.get("/", (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  soap.listen(app, '/historial', service, wsdl);
+  soap.listen(app, '/hospital', service, wsdl);
 
   console.log(`Servidor REST ejecutándose en http://${HOST}:${PORT}`);
-  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/historial`)
+  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/hospital`)
 });
 /******************************
  * FIN - Servidor
