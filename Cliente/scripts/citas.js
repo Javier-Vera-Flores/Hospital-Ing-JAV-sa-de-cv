@@ -1,4 +1,4 @@
-const HOST = "192.168.100.15"
+const HOST = "192.168.0.135";
 const SERVER_URL = `http://${HOST}:3000`; // URL del servidor
 
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
@@ -252,23 +252,16 @@ function mostrarSpinner() {
     `;
 }
 // Función para mostrar el resultado de la búsqueda
-function mostrarResultadoBusqueda(idCita) {
-  // agregar la lógica para buscar la cita en un backend
-  // Simular la cita encontrada
-  const cita = {
-    id: idCita,
-    fecha: "2025-01-05",
-    hora: "10:00 AM",
-    doctor: "Dr. Pérez",
-  };
+async function mostrarResultadoBusqueda(idCita) {
+  let citaEncontrada = await obtenerCitasPorID(idCita);
 
-  if (cita) {
+  if (citaEncontrada) {
     listaBusqueda.innerHTML = `
             <h2>Resultado de la Búsqueda</h2>
-            <p>ID: ${cita.id}</p>
-            <p>Fecha: ${cita.fecha}</p>
-            <p>Hora: ${cita.hora}</p>
-            <p>Doctor: ${cita.doctor}</p>
+            <p>ID: ${citaEncontrada.id}</p>
+            <p>Fecha: ${citaEncontrada.fecha}</p>
+            <p>Hora: ${citaEncontrada.hora}</p>
+            <p>Doctor: ${citaEncontrada.nombreDoctor}</p>
         `;
   } else {
     listaBusqueda.innerHTML = `<p>No se encontró ninguna cita con el ID proporcionado.</p>`;
@@ -551,6 +544,52 @@ async function loadCitas() {
     console.error(error);
     listaBusqueda.innerHTML = `<p>No se pudo cargar correctamente las citas</p>`;
   }
+}
+
+async function obtenerCitasPorUsuario(usuario) {
+  let arregloCitasUsuario = [];
+  try {
+    const response = fetch(`${SERVER_URL}/citasMedicas`);
+    if (!response.ok) {
+      throw new Error("Error al obtener las citas");
+    }
+    const citas = await response.json();
+    arregloCitasUsuario = citas.filter((cita) => {
+      citas.username == usuario;
+    });
+    console;
+  } catch (error) {
+    console.error(error);
+  }
+  return arregloCitasUsuario;
+}
+async function obtenerCitasPorID(idCita) {
+  let citaEntontrada;
+  let temporal = [];
+  try {
+    const response = await fetch(`${SERVER_URL}/citasMedicas`);
+    if (!response.ok) {
+      throw new Error("Error al obtener las citas");
+    }
+    const citas = await response.json();
+    //console.log(citas);
+    // temporal = citas.filter((cita) => {
+    //   return cita.id == idCita;
+    // });
+    for (let j = 0; j < citas.length; j++) {
+      console.log(citas[j].id);
+    }
+    for (let i = 0; i < citas.length; i++) {
+      if (citas[i].id == idCita) {
+        citaEntontrada = citas[i];
+      }
+    }
+    //citaEntontrada = temporal[0];
+    console.log(citaEntontrada);
+  } catch (error) {
+    console.error(error);
+  }
+  return citaEntontrada;
 }
 // Verificar el estado del usuario
 if (usuarioLogeado) {
