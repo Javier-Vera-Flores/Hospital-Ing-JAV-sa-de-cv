@@ -10,7 +10,7 @@ require("dotenv").config(); // Manejar variables de entorno
 const app = express();
 const cors = require("cors"); // Importar el paquete
 const { error } = require("console");
-const HOST = process.env.HOST || "192.168.0.135";
+const HOST = process.env.HOST || "192.168.100.15";
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 /******************************
@@ -25,11 +25,7 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: [
-      `http://${HOST}:${PORT}`,
-      `http://${HOST}:58698`,
-      `http://${HOST}:4000`,
-    ], // Cambia esto al origen donde está tu cliente
+    origin: [`http://${HOST}:${PORT}`, `http://${HOST}:58698`, `http://${HOST}:4000`], // Cambia esto al origen donde está tu cliente
     //origin: '*',//lo quitamos al final jejeje
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
@@ -48,7 +44,6 @@ app.use(express.static(path.join(__dirname, "../Cliente")));
 /******************************
  * INICIO - Citas Medicas
  *****************************/
-
 app.get("/citasMedicas", (req, res) => {
   const filePath = path.join(__dirname, "./jsonComunicacion/citas.json");
   fs.readFile(filePath, "utf8", (err, data) => {
@@ -60,6 +55,7 @@ app.get("/citasMedicas", (req, res) => {
     res.json(JSON.parse(data));
   });
 });
+
 // Ruta para crear una nueva cita médica (POST)
 app.post("/citasMedicas", (req, res) => {
   const nuevaCita = req.body;
@@ -107,6 +103,7 @@ app.post("/citasMedicas", (req, res) => {
     });
   });
 });
+
 // Ruta para actualizar una cita médica (PUT)
 app.put("/citasMedicas/:id", (req, res) => {
   const citaId = req.params.id;
@@ -129,7 +126,7 @@ app.put("/citasMedicas/:id", (req, res) => {
 
     // Actualizamos la cita
     citas[citaIndex] = { ...citas[citaIndex], ...updatedCita };
-
+    console.log(citas[citaIndex]);
     // Guardamos los cambios en el archivo
     fs.writeFile(filePath, JSON.stringify(citas, null, 2), (err) => {
       if (err) {
@@ -139,6 +136,7 @@ app.put("/citasMedicas/:id", (req, res) => {
     });
   });
 });
+
 // Ruta para eliminar una cita médica (DELETE)
 app.delete("/citasMedicas/:id", (req, res) => {
   const citaId = req.params.id;
@@ -203,8 +201,7 @@ app.post("/login", (req, res) => {
       } else {
         res.json({ success: false, message: "Credenciales incorrectas" });
       }
-    }
-  );
+    });
 });
 
 app.post("/register", (req, res) => {
@@ -378,16 +375,16 @@ app.get("/doctores", (req, res) => {
 
 const SOAP_URL = `http://${HOST}:${PORT}`;
 
-app.get("/cargarDoc", async (req, res) => {
-  const { user } = req.query;
-  try {
-    const client = await soap.createClientAsync(SOAP_URL + "/hospital?wsdl");
-    const result = await client.CargarDoctoresAsync({ username: user });
-
-    res.json({ result: result[0] });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+app.get('/cargarDoc', async (req, res) => {
+    const { user } = req.query;
+    try {
+      const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
+      const result = await client.CargarDoctoresAsync({ username: user });
+  
+      res.json({ result: result[0] });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
 });
 /******************************
  * FIN - Nuestro equipo médico
@@ -417,7 +414,7 @@ app.get('/cargarCat', async (req, res) => {
 app.get('/buscarHistorial', async (req, res) => {
   const { user } = req.query;
   try {
-    const client = await soap.createClientAsync(SOAP_URL + "/hospital?wsdl");
+    const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
     const result = await client.BuscarHistorialAsync({ username: user });
 
     res.json({ result: result[0] });
@@ -432,19 +429,14 @@ const service = {
       BuscarHistorial: function (args, callback) {
         const username = args.username;
 
-        const filePath = path.join(
-          __dirname,
-          "./jsonComunicacion/historialMedico.json"
-        );
+        const filePath = path.join(__dirname, "./jsonComunicacion/historialMedico.json");
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) {
-            return res
-              .status(500)
-              .json({ error: "Error al leer el archivo de citas" });
+            return res.status(500).json({ error: "Error al leer el archivo de citas" });
           }
           const listado_historial = JSON.parse(data);
 
-          listado_historial.forEach((historia) => {
+          listado_historial.forEach(historia => {
             if (historia.username == username) {
               callback(null, {
                 id: historia.id,
@@ -465,10 +457,10 @@ const service = {
                 anteHeredoFamiliares: historia.anteHeredoFamiliares,
                 antePersonalesNP: historia.antePersonalesNP,
                 antePersonalesP: historia.antePersonalesP,
-                anteGineObtetrico: historia.anteGineObtetrico,
+                anteGineObtetrico: historia.anteGineObtetrico
               });
             } else {
-              userHistoria = "No se encontró Historia clínica";
+              userHistoria = "No se encontró Historia clínica"
             }
           });
         });
@@ -476,40 +468,30 @@ const service = {
       CargarDoctores: function (args, callback) {
         const username = args.username;
 
-        const doctoresPath = path.join(
-          __dirname,
-          "./jsonComunicacion/doctores.json"
-        );
-        const especialidadesPath = path.join(
-          __dirname,
-          "./jsonComunicacion/especialidades.json"
-        );
+        const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
+        const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
 
         fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
           if (err) {
-            return res
-              .status(500)
-              .json({ error: "Error al leer el archivo de citas" });
+            return res.status(500).json({ error: "Error al leer el archivo de citas" });
           }
 
           fs.readFile(especialidadesPath, "utf8", (err, especialidadesData) => {
             if (err) {
-              return res
-                .status(500)
-                .json({ error: "Error al leer el archivo de citas" });
+              return res.status(500).json({ error: "Error al leer el archivo de citas" });
             }
 
             try {
               // Parsear los datos de los archivos
               const doctores = JSON.parse(doctoresData);
               const especialidades = JSON.parse(especialidadesData);
-
+      
               // Crear un diccionario para acceder a las especialidades
               const especialidadesDict = {};
               especialidades.forEach((e) => {
                 especialidadesDict[e.idEspecialidad] = e.nombre;
               });
-
+      
               // Combinar la información de doctores con especialidades
               const doctoresConEspecialidad = doctores.map((doctor) => ({
                 ...doctor,
@@ -517,7 +499,7 @@ const service = {
                   especialidadesDict[doctor.idEspecialidad] ||
                   "Especialidad no encontrada",
               }));
-
+      
               // Ordenar por especialidad (alfabéticamente)
               doctoresConEspecialidad.sort((a, b) => {
                 if (a.especialidad < b.especialidad) return -1;
@@ -527,11 +509,9 @@ const service = {
               
               // Responder con el resultado combinado y ordenado
               const result = JSON.stringify(doctoresConEspecialidad);
-              callback(null, { CargarDoctoresResult: result });
+              callback(null, {CargarDoctoresResult: result});
             } catch (parseError) {
-              res
-                .status(500)
-                .json({ error: "Error al procesar los datos JSON" });
+              res.status(500).json({ error: "Error al procesar los datos JSON" });
             }
           });
         });
@@ -554,8 +534,8 @@ const service = {
   }
 }
 
-const wsdlPath = path.join(__dirname, "./requerimientos/reqHospital.wsdl");
-const wsdl = fs.readFileSync(wsdlPath, "utf8");
+const wsdlPath = path.join(__dirname, './requerimientos/reqHospital.wsdl');
+const wsdl = fs.readFileSync(wsdlPath, 'utf8');
 /******************************
  * FIN - SOAP Requerimiento Historial
  *****************************/
@@ -570,10 +550,10 @@ app.get("/", (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  soap.listen(app, "/hospital", service, wsdl);
+  soap.listen(app, '/hospital', service, wsdl);
 
   console.log(`Servidor REST ejecutándose en http://${HOST}:${PORT}`);
-  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/hospital`);
+  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/hospital`)
 });
 /******************************
  * FIN - Servidor

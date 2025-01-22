@@ -1,9 +1,10 @@
 /* Header Styles */
 header {
     background-color: #004d40;
-    /* Dark green */
-    color: #f2f8f8;
-    padding: 20px 0;
+}
+
+#menu{
+    background-color: #004d40 !important;
 }
 
 .header-container {
@@ -14,8 +15,13 @@ header {
     margin: 0 auto;
 }
 
+.navbar{
+    background-color: #004d40 !important;
+}
+
 .logo img {
-    height: 80px;
+    height: 90px;
+    padding: 10px;
 }
 
 nav ul {
@@ -36,9 +42,12 @@ nav ul {
 }
 
 .nav-links a:hover {
-    color: #11B5E4;
-    /*color: #a5d6a7;
+    color: #f2f8f8a0;
     /* Light green */
+}
+
+.navbar-collapse {
+    gap: 60px;
 }
 
 /* User Greeting and Logout */
@@ -46,6 +55,10 @@ nav ul {
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+#userGreeting{
+    color: #f2f8f8;
 }
 
 #logoutButton {
@@ -59,7 +72,9 @@ nav ul {
 }
 
 #logoutButton:hover {
-    background-color: #004d40;
+    /*background-color: #004d40;*/
+    background-color: #00796bb8;
+
     /* Darker green */
 }
 

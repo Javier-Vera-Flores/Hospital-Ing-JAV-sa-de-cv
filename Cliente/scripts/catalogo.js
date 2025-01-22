@@ -1,8 +1,6 @@
 const HOST = "192.168.100.15"
 const SERVER_URL = `http://${HOST}:3000`; // URL del servidor
-const SOAP_URL = `${SERVER_URL}/historial?wsdl`;
-
-const soap = require("soap"); //Creo que se va a usar
+const SOAP_URL = `${SERVER_URL}/hospital?wsdl`;
 
 localStorage.setItem("previousPage", window.location.href); //guardamos la pagina actual
 
@@ -15,8 +13,6 @@ const usuarioLogeado = localStorage.getItem('loggedInUser');
 document.addEventListener('DOMContentLoaded', () => {
     const username = localStorage.getItem('loggedInUser');
     console.log("En catalogos");
-
-    loadBySOAP(username);
 
     loadCatalogo(username);
 });
@@ -90,17 +86,5 @@ async function loadCatalogo(username) {
         });
     } catch (error) {
         console.error(error);
-    }
-}
-
-async function loadBySOAP(username) {
-    try {
-        const client = await soap.createClientAsync(SOAP_URL + '/hospital?wsdl');
-        const result = await client.CargarDoctoresAsync({ username: username });
-        const catalogo = result.CargarCatalogoResult;
-
-        console.log(catalogo);        
-    } catch (error) {
-        console.error("Error al cargar el catálogo mediante SOAP:", error);
     }
 }

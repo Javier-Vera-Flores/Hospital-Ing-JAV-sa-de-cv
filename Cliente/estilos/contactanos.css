@@ -11,40 +11,8 @@ main {
   flex: 1; /* Hace que este contenedor crezca para empujar el footer hacia abajo */
 }
 
-/* Main Styles */
-.image-gallery {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
-}
-
-.image-gallery div img {
-  width: 200px;
-  height: 150px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.about-us,
-.additional-info {
-  background-color: #e8f5e9; /* Soft green section background */
-  margin: 20px 0;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.about-us h2,
-.why-us h2 {
-  color: #2e7d32; /* Forest green */
-}
-
-.about-us p,
-.why-us p {
-  line-height: 1.6;
-}
-
 /* Estilos para el formulario */
-form {
+#form {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
@@ -54,7 +22,7 @@ form {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-form h1 {
+#form h1 {
   text-align: center;
   color: #2e7d32; /* Verde bosque */
   margin-bottom: 20px;

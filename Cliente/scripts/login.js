@@ -1,4 +1,4 @@
-const HOST = "192.168.0.135";
+const HOST = "192.168.100.15"
 const SERVER_URL = `http://${HOST}:3000`; // URL del servidor
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -52,12 +52,13 @@ async function iniciarSesion(username, password) {
       messageElement.style.color = "green";
       localStorage.setItem("loggedInUser", username);
       localStorage.setItem("loggedInUserName", result.name);
-      const paginaPrevia = localStorage.getItem("previousPage");
-      if (paginaPrevia) {
+      const paginaPrevia = localStorage.getItem('previousPage');
+      if(paginaPrevia){
         window.location.href = paginaPrevia;
-      } else {
+      }else{
         window.location.href = "../index.html";
       }
+
     } else {
       messageElement.textContent = "Usuario o contraseña incorrectos";
       messageElement.style.color = "red";
@@ -73,11 +74,7 @@ async function agregarUsuario(newUsername, newName, newPassword) {
     const response = await fetch(`${SERVER_URL}/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: newUsername,
-        name: newName,
-        password: newPassword,
-      }),
+      body: JSON.stringify({ username: newUsername, name: newName, password: newPassword }),
     });
 
     if (!response.ok) {
