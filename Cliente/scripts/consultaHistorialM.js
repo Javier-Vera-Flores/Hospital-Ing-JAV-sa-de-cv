@@ -12,7 +12,6 @@ const usuarioLogeado = localStorage.getItem('loggedInUser');
 // const containerCita = document.querySelector('.container-cita');
 const formHistorial = document.getElementById("div_historial");
 
-//logica de logeo
 //Configuración dinámica del boton de iniciar/cerrar sesion
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("redireccionSesion").addEventListener("click", () => {
@@ -43,7 +42,7 @@ async function loadHistorial(user) {
     await simularRetraso(2000); // 2 segundos
 
     try {
-        const response = await fetch(`http://${HOST}:4000/buscarHistorial?user=${user}`);
+        const response = await fetch(`${SERVER_URL}/buscarHistorial?user=${user}`);
         const data = await response.json();
     
         /*Muestra formulario*/

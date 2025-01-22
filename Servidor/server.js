@@ -387,11 +387,28 @@ app.get('/cargarDoc', async (req, res) => {
 /******************************
  * FIN - Nuestro equipo médico
  *****************************/
+//#######################################################################################
+/******************************
+ * INICIO - Catalogo
+ *****************************/
+app.get('/cargarCat', async (req, res) => {
+    const { user } = req.query;
+    try {
+      const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
+      const result = await client.CargarCatalogoAsync({ username: user });
+  
+      res.json({ result: result[0] });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+});
+/******************************
+ * FIN - Catalogo
+ *****************************/
 //########################################################################################
 /******************************
  * Inicio - SOAP Requerimiento Historial
  ******************************/
-
 app.get('/buscarHistorial', async (req, res) => {
   const { user } = req.query;
   try {
@@ -403,10 +420,6 @@ app.get('/buscarHistorial', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
-
-app.listen(4000, () => {
-  console.log(`Servidor escuchando en http://${HOST}:4000`);
-})
 
 const service = {
   HospitalService: {
@@ -491,7 +504,7 @@ const service = {
                 if (a.especialidad > b.especialidad) return 1;
                 return 0;
               });
-      
+              
               // Responder con el resultado combinado y ordenado
               const result = JSON.stringify(doctoresConEspecialidad);
               callback(null, {CargarDoctoresResult: result});
@@ -499,6 +512,20 @@ const service = {
               res.status(500).json({ error: "Error al procesar los datos JSON" });
             }
           });
+        });
+      },
+      CargarCatalogo: function(args, callback){
+        const username = args.username;
+        const catalogoPath = path.join(__dirname, "./jsonComunicacion/catalogo.json");
+
+        fs.readFile(catalogoPath, "utf8", (err, catalogoData) => {
+          if (err) {
+            return res.status(500).json({ error: "Error al leer el archivo de citas" });
+          }
+          // Responder con el resultado combinado y ordenado
+          //const result = JSON.stringify(doctoresConEspecialidad);
+          const result = JSON.parse(catalogoData);
+          callback(null, {CargarCatalogoResult: result});
         });
       }
     }

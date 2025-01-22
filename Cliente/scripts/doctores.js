@@ -75,7 +75,7 @@ async function loadDoctorsBySpecialtySOAP(containerSelector, username) {
     }
 
     try{
-        const response = await fetch(`http://${HOST}:4000/cargarDoc?user=${username}`);
+        const response = await fetch(`${SERVER_URL}/cargarDoc?user=${username}`);
         const data = await response.json();
         const doctores = JSON.parse(data.result.CargarDoctoresResult);
 
@@ -123,4 +123,5 @@ async function loadDoctorsBySpecialtySOAP(containerSelector, username) {
 document.addEventListener("DOMContentLoaded", () => {
     const username = localStorage.getItem('loggedInUser');
     loadDoctorsBySpecialtySOAP(".doctores", username);
+    //loadDoctorsBySpecialty(".doctores");
 });
