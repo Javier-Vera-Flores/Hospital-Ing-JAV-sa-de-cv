@@ -10,7 +10,7 @@ require("dotenv").config(); // Manejar variables de entorno
 const app = express();
 const cors = require("cors"); // Importar el paquete
 const { error } = require("console");
-const HOST = process.env.HOST || "192.168.100.15";
+const HOST = process.env.HOST || "192.168.0.135";
 const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 /******************************
@@ -25,7 +25,11 @@ app.use(
   cors({
     // origin: "http://127.0.0.1:3000", // Cambia esto al origen donde está tu cliente
     //Si quieres que sea desde cualquier origin sustituy origin por --> origin: '*'
-    origin: [`http://${HOST}:${PORT}`, `http://${HOST}:58698`, `http://${HOST}:4000`], // Cambia esto al origen donde está tu cliente
+    origin: [
+      `http://${HOST}:${PORT}`,
+      `http://${HOST}:58698`,
+      `http://${HOST}:4000`,
+    ], // Cambia esto al origen donde está tu cliente
     //origin: '*',//lo quitamos al final jejeje
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type"], // Encabezados permitidos
@@ -199,7 +203,8 @@ app.post("/login", (req, res) => {
       } else {
         res.json({ success: false, message: "Credenciales incorrectas" });
       }
-    });
+    }
+  );
 });
 
 app.post("/register", (req, res) => {
@@ -373,16 +378,16 @@ app.get("/doctores", (req, res) => {
 
 const SOAP_URL = `http://${HOST}:${PORT}`;
 
-app.get('/cargarDoc', async (req, res) => {
-    const { user } = req.query;
-    try {
-      const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
-      const result = await client.CargarDoctoresAsync({ username: user });
-  
-      res.json({ result: result[0] });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
+app.get("/cargarDoc", async (req, res) => {
+  const { user } = req.query;
+  try {
+    const client = await soap.createClientAsync(SOAP_URL + "/hospital?wsdl");
+    const result = await client.CargarDoctoresAsync({ username: user });
+
+    res.json({ result: result[0] });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 /******************************
  * FIN - Nuestro equipo médico
@@ -392,10 +397,10 @@ app.get('/cargarDoc', async (req, res) => {
  * Inicio - SOAP Requerimiento Historial
  ******************************/
 
-app.get('/buscarHistorial', async (req, res) => {
+app.get("/buscarHistorial", async (req, res) => {
   const { user } = req.query;
   try {
-    const client = await soap.createClientAsync(SOAP_URL+'/hospital?wsdl');
+    const client = await soap.createClientAsync(SOAP_URL + "/hospital?wsdl");
     const result = await client.BuscarHistorialAsync({ username: user });
 
     res.json({ result: result[0] });
@@ -406,7 +411,7 @@ app.get('/buscarHistorial', async (req, res) => {
 
 app.listen(4000, () => {
   console.log(`Servidor escuchando en http://${HOST}:4000`);
-})
+});
 
 const service = {
   HospitalService: {
@@ -414,14 +419,19 @@ const service = {
       BuscarHistorial: function (args, callback) {
         const username = args.username;
 
-        const filePath = path.join(__dirname, "./jsonComunicacion/historialMedico.json");
+        const filePath = path.join(
+          __dirname,
+          "./jsonComunicacion/historialMedico.json"
+        );
         fs.readFile(filePath, "utf8", (err, data) => {
           if (err) {
-            return res.status(500).json({ error: "Error al leer el archivo de citas" });
+            return res
+              .status(500)
+              .json({ error: "Error al leer el archivo de citas" });
           }
           const listado_historial = JSON.parse(data);
 
-          listado_historial.forEach(historia => {
+          listado_historial.forEach((historia) => {
             if (historia.username == username) {
               callback(null, {
                 id: historia.id,
@@ -442,10 +452,10 @@ const service = {
                 anteHeredoFamiliares: historia.anteHeredoFamiliares,
                 antePersonalesNP: historia.antePersonalesNP,
                 antePersonalesP: historia.antePersonalesP,
-                anteGineObtetrico: historia.anteGineObtetrico
+                anteGineObtetrico: historia.anteGineObtetrico,
               });
             } else {
-              userHistoria = "No se encontró Historia clínica"
+              userHistoria = "No se encontró Historia clínica";
             }
           });
         });
@@ -453,30 +463,40 @@ const service = {
       CargarDoctores: function (args, callback) {
         const username = args.username;
 
-        const doctoresPath = path.join(__dirname, "./jsonComunicacion/doctores.json");
-        const especialidadesPath = path.join(__dirname, "./jsonComunicacion/especialidades.json");
+        const doctoresPath = path.join(
+          __dirname,
+          "./jsonComunicacion/doctores.json"
+        );
+        const especialidadesPath = path.join(
+          __dirname,
+          "./jsonComunicacion/especialidades.json"
+        );
 
         fs.readFile(doctoresPath, "utf8", (err, doctoresData) => {
           if (err) {
-            return res.status(500).json({ error: "Error al leer el archivo de citas" });
+            return res
+              .status(500)
+              .json({ error: "Error al leer el archivo de citas" });
           }
 
           fs.readFile(especialidadesPath, "utf8", (err, especialidadesData) => {
             if (err) {
-              return res.status(500).json({ error: "Error al leer el archivo de citas" });
+              return res
+                .status(500)
+                .json({ error: "Error al leer el archivo de citas" });
             }
 
             try {
               // Parsear los datos de los archivos
               const doctores = JSON.parse(doctoresData);
               const especialidades = JSON.parse(especialidadesData);
-      
+
               // Crear un diccionario para acceder a las especialidades
               const especialidadesDict = {};
               especialidades.forEach((e) => {
                 especialidadesDict[e.idEspecialidad] = e.nombre;
               });
-      
+
               // Combinar la información de doctores con especialidades
               const doctoresConEspecialidad = doctores.map((doctor) => ({
                 ...doctor,
@@ -484,29 +504,31 @@ const service = {
                   especialidadesDict[doctor.idEspecialidad] ||
                   "Especialidad no encontrada",
               }));
-      
+
               // Ordenar por especialidad (alfabéticamente)
               doctoresConEspecialidad.sort((a, b) => {
                 if (a.especialidad < b.especialidad) return -1;
                 if (a.especialidad > b.especialidad) return 1;
                 return 0;
               });
-      
+
               // Responder con el resultado combinado y ordenado
               const result = JSON.stringify(doctoresConEspecialidad);
-              callback(null, {CargarDoctoresResult: result});
+              callback(null, { CargarDoctoresResult: result });
             } catch (parseError) {
-              res.status(500).json({ error: "Error al procesar los datos JSON" });
+              res
+                .status(500)
+                .json({ error: "Error al procesar los datos JSON" });
             }
           });
         });
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 
-const wsdlPath = path.join(__dirname, './requerimientos/reqHospital.wsdl');
-const wsdl = fs.readFileSync(wsdlPath, 'utf8');
+const wsdlPath = path.join(__dirname, "./requerimientos/reqHospital.wsdl");
+const wsdl = fs.readFileSync(wsdlPath, "utf8");
 /******************************
  * FIN - SOAP Requerimiento Historial
  *****************************/
@@ -521,10 +543,10 @@ app.get("/", (req, res) => {
 });
 
 server.listen(PORT, HOST, () => {
-  soap.listen(app, '/hospital', service, wsdl);
+  soap.listen(app, "/hospital", service, wsdl);
 
   console.log(`Servidor REST ejecutándose en http://${HOST}:${PORT}`);
-  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/hospital`)
+  console.log(`Servicio SOAP corriendo en http://${HOST}:${PORT}/hospital`);
 });
 /******************************
  * FIN - Servidor
